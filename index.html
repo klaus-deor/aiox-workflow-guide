@@ -1050,10 +1050,10 @@
                 <div class="step-desc">Pesquisa de mercado, analise de concorrentes, brief completo. E a fundacao — sem isso, voce constroi a coisa errada.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*create-project-brief</span>
+                  <span class="cmd-tag yolo">*create-project-brief --mode yolo</span>
                   <span class="cmd-tag">*perform-market-research</span>
                   <span class="cmd-tag">*create-competitor-analysis</span>
                   <span class="cmd-tag">*brainstorm {topico}</span>
-                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
@@ -1068,9 +1068,9 @@
                 <div class="step-desc">Transforma o brief em um PRD — o documento que lista TUDO que o produto precisa ter. Requisitos funcionais, nao-funcionais, restricoes.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*create-prd</span>
+                  <span class="cmd-tag yolo">*create-prd --mode yolo</span>
                   <span class="cmd-tag">*create-brownfield-prd</span>
                   <span class="cmd-tag">*create-epic</span>
-                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
@@ -1093,10 +1093,11 @@
                 </div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*create-full-stack-architecture</span>
+                  <span class="cmd-tag yolo">*create-full-stack-architecture --mode yolo</span>
                   <span class="cmd-tag primary">*create-front-end-spec</span>
+                  <span class="cmd-tag yolo">*create-front-end-spec --mode yolo</span>
                   <span class="cmd-tag">*wireframe {low|mid|high}</span>
                   <span class="cmd-tag">*create-backend-architecture</span>
-                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
@@ -1110,8 +1111,8 @@
                 <div class="step-desc">Fatia o PRD grande em pedacos menores (epics e stories). Sem isso, o Scrum Master nao consegue criar stories — e como dar um livro inteiro pra alguem sem dividir em capitulos.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*shard-doc {doc} {destino}</span>
+                  <span class="cmd-tag yolo">*shard-doc {doc} {destino} --mode yolo</span>
                   <span class="cmd-tag">*backlog-prioritize</span>
-                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
@@ -1143,8 +1144,8 @@
                 <div class="step-desc">O Scrum Master cria a user story com criterios de aceitacao (o que define "pronto"), lista de tasks e notas tecnicas para o dev.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*draft</span>
+                  <span class="cmd-tag yolo">*draft --mode yolo</span>
                   <span class="cmd-tag">*story-checklist</span>
-                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
@@ -1159,8 +1160,8 @@
                 <div class="step-desc">O Product Owner revisa a story com um checklist de 10 pontos. Se a nota for 7 ou mais, a story e aprovada e o dev pode comecar.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*validate-story-draft</span>
+                  <span class="cmd-tag yolo">*validate-story-draft --mode yolo</span>
                   <span class="cmd-tag">*stories-index</span>
-                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
@@ -1175,11 +1176,10 @@
                 <div class="step-desc">O dev pega a story aprovada e implementa: escreve codigo, cria testes, roda lint e build. Voce escolhe o modo (veja abaixo).</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*develop</span>
-                  <span class="cmd-tag">*develop-yolo</span>
+                  <span class="cmd-tag yolo">*develop-yolo</span>
                   <span class="cmd-tag">*develop-preflight</span>
                   <span class="cmd-tag">*build</span>
                   <span class="cmd-tag">*run-tests</span>
-                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
@@ -1194,10 +1194,10 @@
                 <div class="step-desc">O QA revisa o codigo, verifica criterios de aceitacao, seguranca e qualidade. Resultado: PASS (ok) / CONCERNS (ok com notas) / FAIL (volta pro dev).</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*review {story}</span>
+                  <span class="cmd-tag yolo">*review {story} --mode yolo</span>
                   <span class="cmd-tag primary">*gate {story}</span>
                   <span class="cmd-tag">*code-review {escopo}</span>
                   <span class="cmd-tag">*security-check {story}</span>
-                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
@@ -1211,7 +1211,7 @@
                 <div class="step-desc">O Product Owner faz o aceite formal e marca a story como concluida. Pronto, essa feature existe!</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*close-story</span>
-                  <span class="cmd-tag yolo">*yolo</span>
+                  <span class="cmd-tag yolo">*close-story --mode yolo</span>
                 </div>
               </div>
             </div>
@@ -1247,7 +1247,7 @@
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*pre-push</span>
                   <span class="cmd-tag primary">*push</span>
-                  <span class="cmd-tag yolo">*yolo</span>
+                  <span class="cmd-tag yolo">*push --mode yolo</span>
                 </div>
               </div>
             </div>
@@ -1262,8 +1262,8 @@
                 <div class="step-desc">Cria o PR no GitHub para revisao do codigo antes de ir para produção.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*create-pr</span>
+                  <span class="cmd-tag yolo">*create-pr --mode yolo</span>
                   <span class="cmd-tag">*version-check</span>
-                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
@@ -1277,9 +1277,9 @@
                 <div class="step-desc">Cria uma release versionada com changelog. Util quando o epic inteiro esta pronto e voce quer marcar uma versao.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*release</span>
+                  <span class="cmd-tag yolo">*release --mode yolo</span>
                   <span class="cmd-tag">*configure-ci</span>
                   <span class="cmd-tag">*setup-github</span>
-                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
