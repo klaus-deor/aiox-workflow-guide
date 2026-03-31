@@ -639,6 +639,36 @@
   footer a { color: var(--accent-blue); text-decoration: none; }
   footer a:hover { text-decoration: underline; }
 
+  /* ── VIDEO ── */
+  .video-section {
+    margin: 0 0 48px;
+  }
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    box-shadow: 0 0 60px rgba(99,102,241,0.08), 0 0 120px rgba(168,85,247,0.04);
+  }
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  .video-caption {
+    text-align: center;
+    margin-top: 14px;
+    font-size: 14px;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+
   /* ── SCROLL ── */
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
@@ -667,6 +697,19 @@
     <div class="hero-badge">AIOX Pro v4.31</div>
     <h1>Guia de Workflow</h1>
     <p>Entenda como o AIOX funciona, passo a passo. Feito para quem esta comecando do zero.</p>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="video-section">
+    <div class="video-wrapper">
+      <iframe
+        src="https://drive.google.com/file/d/1zuAISWVWP6oxLjiArs56JkQu8rVtkfuS/preview"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+        frameborder="0"
+      ></iframe>
+    </div>
+    <p class="video-caption">AIOX — Seu Time de Dev de IA</p>
   </section>
 
   <!-- O QUE E -->
