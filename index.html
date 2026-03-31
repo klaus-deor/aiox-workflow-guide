@@ -680,11 +680,11 @@
     <div class="intro-grid">
       <div class="intro-card">
         <h3><span class="icon">&#9881;</span> Agentes de IA</h3>
-        <p>O AIOX tem <strong>12 agentes especializados</strong>. Cada um faz uma coisa — como membros de um time real. Voce chama eles com <code>@nome</code> e pede tarefas com <code>*comando</code>.</p>
+        <p>O AIOX tem <strong>12 agentes especializados</strong>. Cada um faz uma coisa — como membros de um time real. Voce chama eles com <code>/AIOX:agents:nome</code> e pede tarefas com <code>*comando</code>.</p>
       </div>
       <div class="intro-card">
         <h3><span class="icon">&#9733;</span> Comandos com *</h3>
-        <p>Os comandos com asterisco sao <strong>acoes que voce pede para o agente</strong>. Exemplo: voce ativa o <code>@dev</code> e digita <code>*develop</code> — ele implementa o codigo. Cada agente tem seus proprios comandos.</p>
+        <p>Os comandos com asterisco sao <strong>acoes que voce pede para o agente</strong>. Exemplo: voce ativa o <code>/AIOX:agents:dev</code> e digita <code>*develop</code> — ele implementa o codigo. Cada agente tem seus proprios comandos.</p>
       </div>
       <div class="intro-card">
         <h3><span class="icon">&#128209;</span> Stories</h3>
@@ -709,31 +709,31 @@
       <div class="lc-node lc-draft">
         <div class="lc-circle">&#9998;</div>
         <div class="lc-label">Draft</div>
-        <div class="lc-agent">@sm</div>
+        <div class="lc-agent">/AIOX:agents:sm</div>
       </div>
       <div class="lc-arrow">&#10140;</div>
       <div class="lc-node lc-ready">
         <div class="lc-circle">&#10003;</div>
         <div class="lc-label">Ready</div>
-        <div class="lc-agent">@po</div>
+        <div class="lc-agent">/AIOX:agents:po</div>
       </div>
       <div class="lc-arrow">&#10140;</div>
       <div class="lc-node lc-inprogress">
         <div class="lc-circle">&#9881;</div>
         <div class="lc-label">InProgress</div>
-        <div class="lc-agent">@dev</div>
+        <div class="lc-agent">/AIOX:agents:dev</div>
       </div>
       <div class="lc-arrow">&#10140;</div>
       <div class="lc-node lc-inreview">
         <div class="lc-circle">&#128270;</div>
         <div class="lc-label">InReview</div>
-        <div class="lc-agent">@qa</div>
+        <div class="lc-agent">/AIOX:agents:qa</div>
       </div>
       <div class="lc-arrow">&#10140;</div>
       <div class="lc-node lc-done">
         <div class="lc-circle">&#9733;</div>
         <div class="lc-label">Done</div>
-        <div class="lc-agent">@po</div>
+        <div class="lc-agent">/AIOX:agents:po</div>
       </div>
     </div>
   </section>
@@ -748,47 +748,47 @@
 
     <div class="agents-grid">
       <div class="agent-card" style="border-left:3px solid var(--accent-blue);">
-        <div class="agent-name" style="color:var(--accent-blue);">@analyst</div>
+        <div class="agent-name" style="color:var(--accent-blue);">/AIOX:agents:analyst</div>
         <div class="agent-role">Analista de Negocios. Pesquisa mercado, cria o brief do projeto.</div>
       </div>
       <div class="agent-card" style="border-left:3px solid var(--accent-purple);">
-        <div class="agent-name" style="color:var(--accent-purple);">@pm</div>
+        <div class="agent-name" style="color:var(--accent-purple);">/AIOX:agents:pm</div>
         <div class="agent-role">Product Manager. Define requisitos do produto (PRD) e cria epics.</div>
       </div>
       <div class="agent-card" style="border-left:3px solid var(--accent-cyan);">
-        <div class="agent-name" style="color:var(--accent-cyan);">@architect</div>
+        <div class="agent-name" style="color:var(--accent-cyan);">/AIOX:agents:architect</div>
         <div class="agent-role">Arquiteto de Software. Projeta a estrutura tecnica do sistema.</div>
       </div>
       <div class="agent-card" style="border-left:3px solid var(--accent-rose);">
-        <div class="agent-name" style="color:var(--accent-rose);">@ux-design-expert</div>
+        <div class="agent-name" style="color:var(--accent-rose);">/AIOX:agents:ux-design-expert</div>
         <div class="agent-role">UX/UI Designer. Wireframes, design system, experiencia do usuario.</div>
       </div>
       <div class="agent-card" style="border-left:3px solid #818cf8;">
-        <div class="agent-name" style="color:#818cf8;">@po</div>
+        <div class="agent-name" style="color:#818cf8;">/AIOX:agents:po</div>
         <div class="agent-role">Product Owner. Valida stories, prioriza backlog, da aceite final.</div>
       </div>
       <div class="agent-card" style="border-left:3px solid var(--accent-emerald);">
-        <div class="agent-name" style="color:var(--accent-emerald);">@sm</div>
+        <div class="agent-name" style="color:var(--accent-emerald);">/AIOX:agents:sm</div>
         <div class="agent-role">Scrum Master. Cria as user stories a partir do PRD.</div>
       </div>
       <div class="agent-card" style="border-left:3px solid var(--accent-amber);">
-        <div class="agent-name" style="color:var(--accent-amber);">@dev</div>
+        <div class="agent-name" style="color:var(--accent-amber);">/AIOX:agents:dev</div>
         <div class="agent-role">Desenvolvedor Full-Stack. Implementa o codigo da story.</div>
       </div>
       <div class="agent-card" style="border-left:3px solid #c084fc;">
-        <div class="agent-name" style="color:#c084fc;">@qa</div>
+        <div class="agent-name" style="color:#c084fc;">/AIOX:agents:qa</div>
         <div class="agent-role">QA Engineer. Revisa qualidade, testes e seguranca do codigo.</div>
       </div>
       <div class="agent-card" style="border-left:3px solid var(--accent-orange);">
-        <div class="agent-name" style="color:var(--accent-orange);">@devops</div>
+        <div class="agent-name" style="color:var(--accent-orange);">/AIOX:agents:devops</div>
         <div class="agent-role">DevOps. Push, PR, deploy, CI/CD. Unico que pode publicar codigo.</div>
       </div>
       <div class="agent-card" style="border-left:3px solid #67e8f9;">
-        <div class="agent-name" style="color:#67e8f9;">@data-engineer</div>
+        <div class="agent-name" style="color:#67e8f9;">/AIOX:agents:data-engineer</div>
         <div class="agent-role">DBA. Banco de dados, schemas, migrations, RLS.</div>
       </div>
       <div class="agent-card" style="border-left:3px solid #f9a8d4;">
-        <div class="agent-name" style="color:#f9a8d4;">@aiox-master</div>
+        <div class="agent-name" style="color:#f9a8d4;">/AIOX:agents:aiox-master</div>
         <div class="agent-role">Orquestrador geral. Resolve conflitos, faz override de regras.</div>
       </div>
     </div>
@@ -823,7 +823,7 @@
                 <div class="step-line"></div>
               </div>
               <div class="step-body">
-                <h4>Entender o projeto <span class="agent-tag" style="background:var(--accent-blue-glow);color:var(--accent-blue);">@analyst</span></h4>
+                <h4>Entender o projeto <span class="agent-tag" style="background:var(--accent-blue-glow);color:var(--accent-blue);">/AIOX:agents:analyst</span></h4>
                 <div class="step-desc">Pesquisa de mercado, analise de concorrentes, brief completo. E a fundacao — sem isso, voce constroi a coisa errada.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*create-project-brief</span>
@@ -840,7 +840,7 @@
                 <div class="step-line"></div>
               </div>
               <div class="step-body">
-                <h4>Definir requisitos <span class="agent-tag" style="background:var(--accent-purple-glow);color:var(--accent-purple);">@pm</span></h4>
+                <h4>Definir requisitos <span class="agent-tag" style="background:var(--accent-purple-glow);color:var(--accent-purple);">/AIOX:agents:pm</span></h4>
                 <div class="step-desc">Transforma o brief em um PRD — o documento que lista TUDO que o produto precisa ter. Requisitos funcionais, nao-funcionais, restricoes.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*create-prd</span>
@@ -857,13 +857,13 @@
               </div>
               <div class="step-body">
                 <h4>Projetar arquitetura + experiencia
-                  <span class="agent-tag" style="background:var(--accent-cyan-glow);color:var(--accent-cyan);">@architect</span>
-                  <span class="agent-tag" style="background:var(--accent-rose-glow);color:var(--accent-rose);">@ux-design-expert</span>
+                  <span class="agent-tag" style="background:var(--accent-cyan-glow);color:var(--accent-cyan);">/AIOX:agents:architect</span>
+                  <span class="agent-tag" style="background:var(--accent-rose-glow);color:var(--accent-rose);">/AIOX:agents:ux-design-expert</span>
                   <span class="parallel-badge">&#8644; paralelo</span>
                 </h4>
                 <div class="step-desc">
-                  <strong>@architect</strong> decide COMO o sistema sera construido (tecnologias, APIs, banco).<br>
-                  <strong>@ux-design-expert</strong> define como o usuario vai INTERAGIR (fluxos, telas, design system).<br>
+                  <strong>/AIOX:agents:architect</strong> decide COMO o sistema sera construido (tecnologias, APIs, banco).<br>
+                  <strong>/AIOX:agents:ux-design-expert</strong> define como o usuario vai INTERAGIR (fluxos, telas, design system).<br>
                   Rodam ao mesmo tempo porque nao dependem um do outro.
                 </div>
                 <div class="cmd-box">
@@ -880,7 +880,7 @@
                 <div class="step-dot">4</div>
               </div>
               <div class="step-body">
-                <h4>Quebrar PRD em partes <span class="agent-tag" style="background:rgba(129,140,248,0.15);color:#818cf8;">@po</span></h4>
+                <h4>Quebrar PRD em partes <span class="agent-tag" style="background:rgba(129,140,248,0.15);color:#818cf8;">/AIOX:agents:po</span></h4>
                 <div class="step-desc">Fatia o PRD grande em pedacos menores (epics e stories). Sem isso, o Scrum Master nao consegue criar stories — e como dar um livro inteiro pra alguem sem dividir em capitulos.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*shard-doc {doc} {destino}</span>
@@ -912,7 +912,7 @@
                 <div class="step-line"></div>
               </div>
               <div class="step-body">
-                <h4>Criar a story <span class="agent-tag" style="background:var(--accent-emerald-glow);color:var(--accent-emerald);">@sm</span> <span class="status-badge status-draft">Draft</span></h4>
+                <h4>Criar a story <span class="agent-tag" style="background:var(--accent-emerald-glow);color:var(--accent-emerald);">/AIOX:agents:sm</span> <span class="status-badge status-draft">Draft</span></h4>
                 <div class="step-desc">O Scrum Master cria a user story com criterios de aceitacao (o que define "pronto"), lista de tasks e notas tecnicas para o dev.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*draft</span>
@@ -927,7 +927,7 @@
                 <div class="step-line"></div>
               </div>
               <div class="step-body">
-                <h4>Validar a story <span class="agent-tag" style="background:rgba(129,140,248,0.15);color:#818cf8;">@po</span> <span class="status-badge status-ready">Ready</span></h4>
+                <h4>Validar a story <span class="agent-tag" style="background:rgba(129,140,248,0.15);color:#818cf8;">/AIOX:agents:po</span> <span class="status-badge status-ready">Ready</span></h4>
                 <div class="step-desc">O Product Owner revisa a story com um checklist de 10 pontos. Se a nota for 7 ou mais, a story e aprovada e o dev pode comecar.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*validate-story-draft</span>
@@ -942,7 +942,7 @@
                 <div class="step-line"></div>
               </div>
               <div class="step-body">
-                <h4>Implementar <span class="agent-tag" style="background:var(--accent-amber-glow);color:var(--accent-amber);">@dev</span> <span class="status-badge status-progress">InProgress</span></h4>
+                <h4>Implementar <span class="agent-tag" style="background:var(--accent-amber-glow);color:var(--accent-amber);">/AIOX:agents:dev</span> <span class="status-badge status-progress">InProgress</span></h4>
                 <div class="step-desc">O dev pega a story aprovada e implementa: escreve codigo, cria testes, roda lint e build. Voce escolhe o modo (veja abaixo).</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*develop</span>
@@ -960,7 +960,7 @@
                 <div class="step-line"></div>
               </div>
               <div class="step-body">
-                <h4>Revisar qualidade <span class="agent-tag" style="background:var(--accent-purple-glow);color:#c084fc;">@qa</span> <span class="status-badge status-review">InReview</span></h4>
+                <h4>Revisar qualidade <span class="agent-tag" style="background:var(--accent-purple-glow);color:#c084fc;">/AIOX:agents:qa</span> <span class="status-badge status-review">InReview</span></h4>
                 <div class="step-desc">O QA revisa o codigo, verifica criterios de aceitacao, seguranca e qualidade. Resultado: PASS (ok) / CONCERNS (ok com notas) / FAIL (volta pro dev).</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*review {story}</span>
@@ -976,7 +976,7 @@
                 <div class="step-dot">9</div>
               </div>
               <div class="step-body">
-                <h4>Fechar a story <span class="agent-tag" style="background:rgba(129,140,248,0.15);color:#818cf8;">@po</span> <span class="status-badge status-done">Done</span></h4>
+                <h4>Fechar a story <span class="agent-tag" style="background:rgba(129,140,248,0.15);color:#818cf8;">/AIOX:agents:po</span> <span class="status-badge status-done">Done</span></h4>
                 <div class="step-desc">O Product Owner faz o aceite formal e marca a story como concluida. Pronto, essa feature existe!</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*close-story</span>
@@ -997,7 +997,7 @@
           <div class="phase-icon">&#128640;</div>
           <div class="phase-info">
             <h3>Fase 3 — Entrega</h3>
-            <span>Publicar o codigo. Exclusivo do @devops.</span>
+            <span>Publicar o codigo. Exclusivo do /AIOX:agents:devops.</span>
           </div>
           <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </div>
@@ -1010,8 +1010,8 @@
                 <div class="step-line"></div>
               </div>
               <div class="step-body">
-                <h4>Verificar e enviar <span class="agent-tag" style="background:var(--accent-orange-glow);color:var(--accent-orange);">@devops</span></h4>
-                <div class="step-desc">Roda todos os quality checks e envia o codigo para o GitHub. Nenhum outro agente pode fazer push — so o @devops.</div>
+                <h4>Verificar e enviar <span class="agent-tag" style="background:var(--accent-orange-glow);color:var(--accent-orange);">/AIOX:agents:devops</span></h4>
+                <div class="step-desc">Roda todos os quality checks e envia o codigo para o GitHub. Nenhum outro agente pode fazer push — so o /AIOX:agents:devops.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*pre-push</span>
                   <span class="cmd-tag primary">*push</span>
@@ -1025,7 +1025,7 @@
                 <div class="step-line"></div>
               </div>
               <div class="step-body">
-                <h4>Criar Pull Request <span class="agent-tag" style="background:var(--accent-orange-glow);color:var(--accent-orange);">@devops</span></h4>
+                <h4>Criar Pull Request <span class="agent-tag" style="background:var(--accent-orange-glow);color:var(--accent-orange);">/AIOX:agents:devops</span></h4>
                 <div class="step-desc">Cria o PR no GitHub para revisao do codigo antes de ir para produção.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*create-pr</span>
@@ -1039,7 +1039,7 @@
                 <div class="step-dot">12</div>
               </div>
               <div class="step-body">
-                <h4>Release <span class="agent-tag" style="background:var(--accent-orange-glow);color:var(--accent-orange);">@devops</span> <span class="status-badge" style="background:rgba(107,114,128,0.12);color:#9ca3af;">OPCIONAL</span></h4>
+                <h4>Release <span class="agent-tag" style="background:var(--accent-orange-glow);color:var(--accent-orange);">/AIOX:agents:devops</span> <span class="status-badge" style="background:rgba(107,114,128,0.12);color:#9ca3af;">OPCIONAL</span></h4>
                 <div class="step-desc">Cria uma release versionada com changelog. Util quando o epic inteiro esta pronto e voce quer marcar uma versao.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*release</span>
@@ -1117,23 +1117,23 @@
       <p>Esses dois parecem iguais mas fazem coisas DIFERENTES:</p>
       <ul>
         <li><code>*yolo</code> &mdash; Toggle de permissao. Disponivel em TODOS os agentes. Alterna entre: <strong>ask</strong> (pede confirmacao), <strong>auto</strong> (faz tudo sozinho) e <strong>explore</strong> (so le, nao muda nada). Fica salvo ate voce mudar de novo.</li>
-        <li><code>*develop-yolo</code> &mdash; Modo de execucao. So funciona no <code>@dev</code>. Faz o desenvolvimento inteiro de forma autonoma. So vale para aquela execucao, nao muda configuracao permanente.</li>
+        <li><code>*develop-yolo</code> &mdash; Modo de execucao. So funciona no <code>/AIOX:agents:dev</code>. Faz o desenvolvimento inteiro de forma autonoma. So vale para aquela execucao, nao muda configuracao permanente.</li>
       </ul>
     </div>
 
     <div class="disclaimer">
-      <h4>&#128274; So o @devops pode publicar codigo</h4>
-      <p>Nenhum outro agente pode fazer <code>git push</code>, criar Pull Request ou gerenciar releases. Se voce pedir para o <code>@dev</code> fazer push, ele vai recusar e pedir para voce chamar o <code>@devops</code>. Isso existe para evitar que codigo nao revisado va para producao.</p>
+      <h4>&#128274; So o /AIOX:agents:devops pode publicar codigo</h4>
+      <p>Nenhum outro agente pode fazer <code>git push</code>, criar Pull Request ou gerenciar releases. Se voce pedir para o <code>/AIOX:agents:dev</code> fazer push, ele vai recusar e pedir para voce chamar o <code>/AIOX:agents:devops</code>. Isso existe para evitar que codigo nao revisado va para producao.</p>
     </div>
 
     <div class="disclaimer">
       <h4>&#128260; Se o QA reprovar, existe um loop automatico</h4>
-      <p>Quando o <code>@qa</code> retorna FAIL, o AIOX ativa um ciclo:</p>
+      <p>Quando o <code>/AIOX:agents:qa</code> retorna FAIL, o AIOX ativa um ciclo:</p>
       <ul>
-        <li><code>@qa</code> gera lista de correcoes com <code>*create-fix-request</code></li>
-        <li><code>@dev</code> aplica as correcoes com <code>*apply-qa-fixes</code></li>
-        <li><code>@qa</code> revisa de novo &mdash; repete ate 5 vezes</li>
-        <li>Se nao resolver em 5 tentativas, escala para o <code>@aiox-master</code></li>
+        <li><code>/AIOX:agents:qa</code> gera lista de correcoes com <code>*create-fix-request</code></li>
+        <li><code>/AIOX:agents:dev</code> aplica as correcoes com <code>*apply-qa-fixes</code></li>
+        <li><code>/AIOX:agents:qa</code> revisa de novo &mdash; repete ate 5 vezes</li>
+        <li>Se nao resolver em 5 tentativas, escala para o <code>/AIOX:agents:aiox-master</code></li>
       </ul>
     </div>
 
@@ -1162,12 +1162,12 @@
       <h4>&#128176; Cada agente tem sua area — nao invada</h4>
       <p>O AIOX foi projetado com separacao rigida de responsabilidades. Respeite as fronteiras:</p>
       <ul>
-        <li>Criar story &rarr; so <code>@sm</code></li>
-        <li>Validar story &rarr; so <code>@po</code></li>
-        <li>Criar epic &rarr; so <code>@pm</code></li>
-        <li>Fazer push / PR &rarr; so <code>@devops</code></li>
-        <li>Schema de banco &rarr; so <code>@data-engineer</code></li>
-        <li>Resolver conflitos entre agentes &rarr; <code>@aiox-master</code></li>
+        <li>Criar story &rarr; so <code>/AIOX:agents:sm</code></li>
+        <li>Validar story &rarr; so <code>/AIOX:agents:po</code></li>
+        <li>Criar epic &rarr; so <code>/AIOX:agents:pm</code></li>
+        <li>Fazer push / PR &rarr; so <code>/AIOX:agents:devops</code></li>
+        <li>Schema de banco &rarr; so <code>/AIOX:agents:data-engineer</code></li>
+        <li>Resolver conflitos entre agentes &rarr; <code>/AIOX:agents:aiox-master</code></li>
       </ul>
     </div>
   </section>
