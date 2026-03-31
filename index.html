@@ -5,76 +5,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AIOX Pro — Guia de Workflow</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;500;600;700&display=swap');
 
   :root {
-    --bg: #0a0a0f;
-    --bg-card: #111118;
-    --bg-card-hover: #16161f;
-    --bg-elevated: #1a1a24;
-    --border: #1e1e2a;
-    --border-hover: #2a2a3a;
-    --text: #e4e4ed;
-    --text-muted: #8888a0;
-    --text-dim: #55556a;
-    --accent-blue: #6366f1;
-    --accent-blue-glow: rgba(99,102,241,0.15);
-    --accent-purple: #a855f7;
-    --accent-purple-glow: rgba(168,85,247,0.15);
-    --accent-emerald: #10b981;
-    --accent-emerald-glow: rgba(16,185,129,0.15);
-    --accent-amber: #f59e0b;
-    --accent-amber-glow: rgba(245,158,11,0.15);
-    --accent-rose: #f43f5e;
-    --accent-rose-glow: rgba(244,63,94,0.15);
-    --accent-cyan: #06b6d4;
-    --accent-cyan-glow: rgba(6,182,212,0.15);
-    --accent-orange: #f97316;
-    --accent-orange-glow: rgba(249,115,22,0.15);
-    --radius: 16px;
-    --radius-sm: 10px;
-    --radius-xs: 6px;
+    --bg: #080808;
+    --bg-deep: #0D0D0D;
+    --bg-card: #121212;
+    --bg-card-hover: #181818;
+    --bg-elevated: #1a1a1a;
+    --border: rgba(218,204,180,0.08);
+    --border-hover: rgba(218,204,180,0.15);
+    --text: #F4F4F4;
+    --text-muted: #B5AB9B;
+    --text-dim: #6E6E6E;
+    --sand: #DDD1BB;
+    --sand-dark: #B5AB9B;
+    --sand-mid: #E0DCCF;
+    --sand-glow: rgba(218,204,180,0.06);
+    --sand-glow-strong: rgba(218,204,180,0.12);
+    --gray-deep: #484848;
+    --gray-mid: #6E6E6E;
+    --radius: 0px;
+    --radius-sm: 0px;
+    --radius-xs: 0px;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  ::selection { background: var(--sand); color: var(--bg); }
+
   body {
-    font-family: 'Inter', -apple-system, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.7;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
-  }
-
-  /* Ambient background glow */
-  body::before {
-    content: '';
-    position: fixed;
-    top: -40%;
-    left: -20%;
-    width: 80%;
-    height: 80%;
-    background: radial-gradient(ellipse, rgba(99,102,241,0.06) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
-  }
-  body::after {
-    content: '';
-    position: fixed;
-    bottom: -30%;
-    right: -20%;
-    width: 70%;
-    height: 70%;
-    background: radial-gradient(ellipse, rgba(168,85,247,0.05) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
+    font-weight: 300;
   }
 
   .container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 80px;
     position: relative;
     z-index: 1;
   }
@@ -82,40 +55,44 @@
   /* ── HERO ── */
   .hero {
     text-align: center;
-    padding: 80px 0 60px;
+    padding: 100px 0 64px;
   }
   .hero-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 6px 16px;
-    background: var(--accent-blue-glow);
-    border: 1px solid rgba(99,102,241,0.25);
-    border-radius: 100px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--accent-blue);
-    letter-spacing: 0.5px;
-    margin-bottom: 28px;
+    padding: 4px 14px;
+    background: var(--bg);
+    border: 1px solid var(--border-hover);
+    border-radius: 0;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--sand);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
   }
-  .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-blue); animation: pulse-dot 2s infinite; }
-  @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--sand); animation: pulse-dot 2s infinite; }
+  @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+  @keyframes fadeUp { 0% { opacity: 0; transform: translateY(24px); } 100% { opacity: 1; transform: translateY(0); } }
   .hero h1 {
-    font-size: clamp(36px, 5vw, 56px);
-    font-weight: 900;
-    letter-spacing: -1.5px;
-    line-height: 1.1;
-    margin-bottom: 16px;
-    background: linear-gradient(135deg, #fff 0%, #c4c4d4 50%, var(--accent-blue) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 0.95;
+    margin-bottom: 20px;
+    color: var(--text);
+    animation: fadeUp 0.7s ease both;
   }
   .hero p {
-    font-size: 18px;
+    font-size: 17px;
     color: var(--text-muted);
-    max-width: 580px;
+    max-width: 540px;
     margin: 0 auto 40px;
     font-weight: 300;
+    line-height: 1.7;
+    animation: fadeUp 0.7s ease 0.15s both;
   }
 
   /* ── SECTION TITLES ── */
@@ -123,64 +100,72 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    margin: 72px 0 12px;
+    margin: 96px 0 12px;
   }
   .section-title .num {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    font-size: 15px;
+    width: 32px;
+    height: 32px;
+    border-radius: 0;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
     font-weight: 700;
     flex-shrink: 0;
+    background: var(--sand-glow) !important;
+    color: var(--sand) !important;
+    border: 1px solid var(--border);
   }
   .section-title h2 {
-    font-size: 28px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
+    font-size: clamp(24px, 3.5vw, 36px);
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 0.95;
+    color: var(--text);
   }
   .section-subtitle {
-    color: var(--text-muted);
-    font-size: 16px;
-    margin-bottom: 32px;
-    padding-left: 50px;
+    color: var(--text-dim);
+    font-size: 15px;
+    margin-bottom: 36px;
+    padding-left: 46px;
     font-weight: 300;
+    line-height: 1.6;
   }
 
   /* ── INTRO BOXES ── */
   .intro-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
     margin-bottom: 48px;
   }
   .intro-card {
-    background: var(--bg-card);
+    background: rgba(218,204,180,0.03);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 28px;
+    border-radius: 0;
+    padding: 32px 28px;
     transition: all 0.3s ease;
   }
-  .intro-card:hover { border-color: var(--border-hover); background: var(--bg-card-hover); }
+  .intro-card:hover { background: var(--sand-glow); transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
   .intro-card h3 {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
     margin-bottom: 10px;
     display: flex;
     align-items: center;
     gap: 10px;
+    color: var(--sand);
   }
-  .intro-card h3 .icon { font-size: 20px; }
-  .intro-card p { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+  .intro-card h3 .icon { font-size: 18px; }
+  .intro-card p { font-size: 14px; color: var(--text-muted); line-height: 1.8; font-weight: 300; }
   .intro-card code {
-    background: var(--bg-elevated);
+    background: rgba(218,204,180,0.06);
     padding: 2px 7px;
-    border-radius: 5px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12.5px;
-    color: var(--accent-purple);
+    border-radius: 0;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    color: var(--sand);
     border: 1px solid var(--border);
   }
 
@@ -195,10 +180,10 @@
   .phase-block {
     position: relative;
     border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border-radius: 0;
     overflow: hidden;
-    margin-bottom: 20px;
-    background: var(--bg-card);
+    margin-bottom: 2px;
+    background: rgba(218,204,180,0.03);
   }
 
   .phase-header {
@@ -210,24 +195,27 @@
     user-select: none;
     transition: background 0.2s;
   }
-  .phase-header:hover { background: var(--bg-card-hover); }
+  .phase-header:hover { background: var(--sand-glow); }
   .phase-header .phase-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
+    width: 40px;
+    height: 40px;
+    border-radius: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 18px;
     flex-shrink: 0;
+    background: var(--sand-glow);
+    color: var(--sand);
+    border: 1px solid var(--border);
   }
   .phase-header .phase-info { flex: 1; }
-  .phase-header .phase-info h3 { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; }
-  .phase-header .phase-info span { font-size: 13px; color: var(--text-muted); font-weight: 400; }
+  .phase-header .phase-info h3 { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; color: var(--text); }
+  .phase-header .phase-info span { font-size: 13px; color: var(--text-dim); font-weight: 300; }
   .phase-header .chevron {
     width: 24px;
     height: 24px;
-    color: var(--text-dim);
+    color: var(--sand-dark);
     transition: transform 0.3s ease;
     flex-shrink: 0;
   }
@@ -263,22 +251,25 @@
     padding-top: 2px;
   }
   .step-dot {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border-radius: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 13px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
     font-weight: 700;
     flex-shrink: 0;
-    border: 2px solid;
+    border: 1px solid var(--sand-dark);
+    color: var(--sand);
+    background: transparent;
   }
   .step-line {
-    width: 2px;
+    width: 1px;
     flex: 1;
     min-height: 16px;
-    background: var(--border);
+    background: rgba(218,204,180,0.08);
     margin-top: 4px;
   }
   .step:last-child .step-line { display: none; }
@@ -286,38 +277,44 @@
   .step-body h4 {
     font-size: 14px;
     font-weight: 600;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     display: flex;
     align-items: center;
     gap: 8px;
     flex-wrap: wrap;
+    color: var(--text);
   }
   .step-body h4 .agent-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 5px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 0;
+    background: rgba(218,204,180,0.06) !important;
+    color: var(--sand) !important;
+    border: 1px solid var(--border);
+    letter-spacing: 0.03em;
   }
   .step-body .step-desc {
     font-size: 13px;
-    color: var(--text-muted);
+    color: var(--text-dim);
     line-height: 1.7;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    font-weight: 300;
   }
   .step-body .cmd-box {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 4px;
   }
   .cmd-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
     padding: 4px 10px;
-    border-radius: 6px;
-    background: var(--bg-elevated);
+    border-radius: 0;
+    background: rgba(218,204,180,0.03);
     border: 1px solid var(--border);
-    color: var(--text);
+    color: var(--text-muted);
     font-weight: 500;
     cursor: default;
     transition: all 0.2s;
@@ -325,92 +322,101 @@
   }
   .cmd-tag:hover {
     border-color: var(--border-hover);
+    background: var(--sand-glow);
     transform: translateY(-1px);
   }
   .cmd-tag.primary {
-    border-color: rgba(99,102,241,0.3);
-    background: var(--accent-blue-glow);
-    color: #a5b4fc;
+    border-color: rgba(218,204,180,0.2);
+    background: var(--sand-glow);
+    color: var(--sand);
   }
   .status-badge {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 100px;
-    letter-spacing: 0.3px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 0;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
   }
 
-  /* Color schemes per phase */
-  .phase-plan .phase-icon { background: var(--accent-blue-glow); color: var(--accent-blue); }
-  .phase-plan .step-dot { border-color: var(--accent-blue); color: var(--accent-blue); }
-  .phase-dev .phase-icon { background: var(--accent-emerald-glow); color: var(--accent-emerald); }
-  .phase-dev .step-dot { border-color: var(--accent-emerald); color: var(--accent-emerald); }
-  .phase-ship .phase-icon { background: var(--accent-orange-glow); color: var(--accent-orange); }
-  .phase-ship .step-dot { border-color: var(--accent-orange); color: var(--accent-orange); }
+  /* Color schemes per phase — all sand-based */
+  .phase-plan .phase-icon, .phase-dev .phase-icon, .phase-ship .phase-icon {
+    background: var(--sand-glow); color: var(--sand);
+  }
+  .phase-plan .step-dot, .phase-dev .step-dot, .phase-ship .step-dot {
+    border-color: var(--sand-dark); color: var(--sand);
+  }
 
-  .status-draft { background: rgba(136,136,160,0.12); color: #9999b0; }
-  .status-ready { background: var(--accent-blue-glow); color: #818cf8; }
-  .status-progress { background: var(--accent-amber-glow); color: var(--accent-amber); }
-  .status-review { background: var(--accent-purple-glow); color: var(--accent-purple); }
-  .status-done { background: var(--accent-emerald-glow); color: var(--accent-emerald); }
+  .status-draft { background: rgba(110,110,110,0.12); color: #919191; }
+  .status-ready { background: var(--sand-glow); color: var(--sand); }
+  .status-progress { background: rgba(218,204,180,0.1); color: var(--sand-mid); }
+  .status-review { background: rgba(218,204,180,0.08); color: var(--sand-dark); }
+  .status-done { background: rgba(218,204,180,0.15); color: var(--sand); }
 
   /* ── AGENTS TABLE ── */
   .agents-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 12px;
+    gap: 2px;
     margin: 24px 0 48px;
   }
   .agent-card {
-    background: var(--bg-card);
+    background: rgba(218,204,180,0.03);
     border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 18px 20px;
+    border-radius: 0;
+    padding: 20px;
     transition: all 0.3s;
+    border-top: 3px solid var(--sand) !important;
+    border-left: none !important;
   }
-  .agent-card:hover { border-color: var(--border-hover); background: var(--bg-card-hover); transform: translateY(-2px); }
+  .agent-card:hover { background: var(--sand-glow); transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
   .agent-card .agent-name {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 4px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--sand) !important;
+    letter-spacing: 0.03em;
   }
   .agent-card .agent-role {
     font-size: 12px;
-    color: var(--text-muted);
-    line-height: 1.5;
+    color: var(--text-dim);
+    line-height: 1.6;
+    font-weight: 300;
   }
 
   /* ── MODES COMPARISON ── */
   .modes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
     margin: 24px 0 48px;
   }
   .mode-card {
-    background: var(--bg-card);
+    background: rgba(218,204,180,0.03);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border-radius: 0;
     padding: 28px;
     transition: all 0.3s;
     position: relative;
     overflow: hidden;
   }
-  .mode-card:hover { border-color: var(--border-hover); }
+  .mode-card:hover { background: var(--sand-glow); transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
   .mode-card .mode-label {
-    font-size: 11px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    color: var(--sand) !important;
   }
-  .mode-card h3 { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
-  .mode-card .mode-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.7; }
+  .mode-card h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; color: var(--text); }
+  .mode-card .mode-desc { font-size: 13px; color: var(--text-dim); margin-bottom: 16px; line-height: 1.7; font-weight: 300; }
   .mode-card .mode-meta {
     display: flex;
     flex-direction: column;
@@ -422,54 +428,58 @@
     justify-content: space-between;
     font-size: 13px;
   }
-  .mode-card .mode-meta-row .label { color: var(--text-dim); }
-  .mode-card .mode-meta-row .value { font-weight: 600; }
+  .mode-card .mode-meta-row .label { color: var(--gray-mid); font-weight: 300; }
+  .mode-card .mode-meta-row .value { font-weight: 600; color: var(--sand-mid); }
   .mode-card .mode-cmd {
     margin-top: 16px;
     padding-top: 16px;
     border-top: 1px solid var(--border);
   }
   .mode-card .mode-cmd code {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
     padding: 6px 12px;
-    border-radius: 6px;
+    border-radius: 0;
     display: inline-block;
+    background: var(--sand-glow);
+    color: var(--sand);
+    border: 1px solid var(--border);
   }
 
-  .mode-interactive .mode-label { color: var(--accent-blue); }
-  .mode-interactive .mode-cmd code { background: var(--accent-blue-glow); color: #a5b4fc; }
-  .mode-yolo .mode-label { color: var(--accent-amber); }
-  .mode-yolo .mode-cmd code { background: var(--accent-amber-glow); color: #fbbf24; }
-  .mode-preflight .mode-label { color: var(--accent-purple); }
-  .mode-preflight .mode-cmd code { background: var(--accent-purple-glow); color: #c084fc; }
+  .mode-interactive .mode-label,
+  .mode-yolo .mode-label,
+  .mode-preflight .mode-label { color: var(--sand) !important; }
+  .mode-interactive .mode-cmd code,
+  .mode-yolo .mode-cmd code,
+  .mode-preflight .mode-cmd code { background: var(--sand-glow); color: var(--sand); }
 
   .mode-default-tag {
     position: absolute;
     top: 16px;
     right: 16px;
-    font-size: 10px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 9px;
     font-weight: 700;
     padding: 3px 8px;
-    border-radius: 4px;
-    background: var(--accent-blue-glow);
-    color: var(--accent-blue);
-    letter-spacing: 0.5px;
+    border-radius: 0;
+    background: var(--sand);
+    color: var(--bg);
+    letter-spacing: 0.1em;
   }
 
   /* ── DISCLAIMER BANNER ── */
   .disclaimer {
-    background: var(--bg-card);
+    background: rgba(218,204,180,0.03);
     border: 1px solid var(--border);
-    border-left: 3px solid var(--accent-amber);
-    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--sand);
+    border-radius: 0;
     padding: 24px 28px;
-    margin: 24px 0;
+    margin: 2px 0;
   }
   .disclaimer h4 {
     font-size: 14px;
     font-weight: 700;
-    color: var(--accent-amber);
+    color: var(--sand);
     margin-bottom: 8px;
     display: flex;
     align-items: center;
@@ -477,16 +487,18 @@
   }
   .disclaimer p {
     font-size: 13px;
-    color: var(--text-muted);
+    color: var(--text-dim);
     line-height: 1.8;
+    font-weight: 300;
   }
   .disclaimer code {
-    background: var(--bg-elevated);
+    background: var(--sand-glow);
     padding: 1px 6px;
-    border-radius: 4px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: var(--accent-purple);
+    border-radius: 0;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    color: var(--sand);
+    border: 1px solid var(--border);
   }
   .disclaimer ul {
     list-style: none;
@@ -494,21 +506,22 @@
   }
   .disclaimer li {
     font-size: 13px;
-    color: var(--text-muted);
-    padding: 3px 0;
+    color: var(--text-dim);
+    padding: 4px 0;
     padding-left: 16px;
     position: relative;
+    font-weight: 300;
   }
   .disclaimer li::before {
     content: '';
     position: absolute;
     left: 0;
-    top: 12px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent-amber);
-    opacity: 0.5;
+    top: 13px;
+    width: 5px;
+    height: 5px;
+    border-radius: 0;
+    background: var(--sand);
+    opacity: 0.4;
   }
 
   /* ── LIFECYCLE VISUAL ── */
@@ -518,7 +531,7 @@
     gap: 0;
     margin: 24px 0 36px;
     overflow-x: auto;
-    padding: 12px 0;
+    padding: 16px 0;
   }
   .lc-node {
     display: flex;
@@ -529,51 +542,54 @@
     text-align: center;
   }
   .lc-circle {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    border-radius: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
-    border: 2px solid;
-    transition: transform 0.3s;
+    font-size: 16px;
+    border: 1px solid;
+    transition: transform 0.3s, box-shadow 0.3s;
   }
-  .lc-circle:hover { transform: scale(1.1); }
+  .lc-circle:hover { transform: scale(1.08); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
   .lc-label {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: -0.2px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
   .lc-agent {
-    font-size: 10px;
-    color: var(--text-dim);
-    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--gray-mid);
+    font-family: 'Roboto Mono', monospace;
+    letter-spacing: 0.02em;
   }
   .lc-arrow {
-    font-size: 18px;
-    color: var(--text-dim);
+    font-size: 16px;
+    color: var(--gray-deep);
     flex-shrink: 0;
     margin: 0 4px;
     margin-bottom: 26px;
   }
 
-  .lc-draft .lc-circle { border-color: #6b7280; color: #6b7280; background: rgba(107,114,128,0.08); }
-  .lc-draft .lc-label { color: #9ca3af; }
-  .lc-ready .lc-circle { border-color: var(--accent-blue); color: var(--accent-blue); background: var(--accent-blue-glow); }
-  .lc-ready .lc-label { color: #818cf8; }
-  .lc-inprogress .lc-circle { border-color: var(--accent-amber); color: var(--accent-amber); background: var(--accent-amber-glow); }
-  .lc-inprogress .lc-label { color: var(--accent-amber); }
-  .lc-inreview .lc-circle { border-color: var(--accent-purple); color: var(--accent-purple); background: var(--accent-purple-glow); }
-  .lc-inreview .lc-label { color: var(--accent-purple); }
-  .lc-done .lc-circle { border-color: var(--accent-emerald); color: var(--accent-emerald); background: var(--accent-emerald-glow); }
-  .lc-done .lc-label { color: var(--accent-emerald); }
+  .lc-draft .lc-circle { border-color: var(--gray-deep); color: var(--gray-mid); background: rgba(72,72,72,0.08); }
+  .lc-draft .lc-label { color: var(--gray-mid); }
+  .lc-ready .lc-circle { border-color: var(--sand-dark); color: var(--sand); background: var(--sand-glow); }
+  .lc-ready .lc-label { color: var(--sand); }
+  .lc-inprogress .lc-circle { border-color: var(--sand); color: var(--sand); background: rgba(218,204,180,0.1); }
+  .lc-inprogress .lc-label { color: var(--sand-mid); }
+  .lc-inreview .lc-circle { border-color: var(--sand-dark); color: var(--sand-dark); background: var(--sand-glow); }
+  .lc-inreview .lc-label { color: var(--sand-dark); }
+  .lc-done .lc-circle { border-color: var(--sand); color: var(--bg); background: var(--sand); }
+  .lc-done .lc-label { color: var(--sand); }
 
   /* ── TOOLTIP ── */
   .tip {
     position: relative;
     cursor: help;
-    border-bottom: 1px dashed var(--text-dim);
+    border-bottom: 1px dashed var(--gray-deep);
   }
   .tip::after {
     content: attr(data-tip);
@@ -585,9 +601,8 @@
     border: 1px solid var(--border-hover);
     color: var(--text);
     padding: 8px 14px;
-    border-radius: 8px;
+    border-radius: 0;
     font-size: 12px;
-    white-space: nowrap;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s;
@@ -603,14 +618,17 @@
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    font-size: 11px;
-    font-weight: 600;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
     padding: 3px 10px;
-    border-radius: 100px;
-    background: var(--accent-cyan-glow);
-    color: var(--accent-cyan);
-    border: 1px solid rgba(6,182,212,0.2);
+    border-radius: 0;
+    background: var(--sand);
+    color: var(--bg);
     margin-left: 8px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none;
   }
 
   /* ── REPEAT BANNER ── */
@@ -620,23 +638,26 @@
     justify-content: center;
     gap: 10px;
     padding: 14px 20px;
-    background: var(--accent-emerald-glow);
-    border: 1px dashed rgba(16,185,129,0.3);
-    border-radius: var(--radius-sm);
+    background: var(--sand-glow);
+    border: 1px dashed rgba(218,204,180,0.15);
+    border-radius: 0;
     margin-top: 8px;
     font-size: 13px;
     font-weight: 600;
-    color: var(--accent-emerald);
+    color: var(--sand);
   }
 
   /* ── FOOTER ── */
   footer {
     text-align: center;
-    padding: 60px 0 40px;
-    color: var(--text-dim);
+    padding: 60px 80px 40px;
+    color: var(--gray-mid);
     font-size: 13px;
+    border-top: 1px solid var(--border);
+    margin-top: 64px;
+    font-weight: 300;
   }
-  footer a { color: var(--accent-blue); text-decoration: none; }
+  footer a { color: var(--sand); text-decoration: none; }
   footer a:hover { text-decoration: underline; }
 
   /* ── VIDEO ── */
@@ -647,11 +668,10 @@
     position: relative;
     width: 100%;
     padding-bottom: 56.25%;
-    border-radius: var(--radius);
+    border-radius: 0;
     overflow: hidden;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    box-shadow: 0 0 60px rgba(99,102,241,0.08), 0 0 120px rgba(168,85,247,0.04);
+    background: var(--bg-deep);
+    border: 1px solid var(--border-hover);
   }
   .video-wrapper iframe {
     position: absolute;
@@ -664,27 +684,36 @@
   .video-caption {
     text-align: center;
     margin-top: 14px;
-    font-size: 14px;
-    color: var(--text-dim);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    color: var(--gray-mid);
     font-weight: 400;
+    letter-spacing: 0.05em;
   }
 
   /* ── SCROLL ── */
-  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
+  ::-webkit-scrollbar-thumb { background: rgba(218,204,180,0.15); border-radius: 0; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(218,204,180,0.25); }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 640px) {
-    .hero { padding: 48px 0 36px; }
-    .hero h1 { font-size: 32px; }
+  @media (max-width: 900px) {
+    .container { padding: 0 20px; }
+    .hero { padding: 72px 0 48px; }
+    .hero h1 { font-size: 36px; letter-spacing: -1px; }
     .section-subtitle { padding-left: 0; }
+    .intro-grid { grid-template-columns: 1fr; }
     .agents-grid { grid-template-columns: 1fr 1fr; }
     .modes-grid { grid-template-columns: 1fr; }
     .lifecycle { gap: 0; }
     .lc-node { min-width: 80px; }
     .phase-steps { padding: 0 16px 20px; }
+    footer { padding: 40px 20px; }
+    .section-title { margin: 72px 0 12px; }
+  }
+  @media (max-width: 480px) {
+    .agents-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -715,7 +744,7 @@
   <!-- O QUE E -->
   <section>
     <div class="section-title">
-      <div class="num" style="background:var(--accent-blue-glow);color:var(--accent-blue);">?</div>
+      <div class="num">?</div>
       <h2>O que e o AIOX?</h2>
     </div>
     <p class="section-subtitle">Antes de qualquer coisa, entenda os conceitos basicos.</p>
@@ -743,7 +772,7 @@
   <!-- LIFECYCLE -->
   <section>
     <div class="section-title">
-      <div class="num" style="background:var(--accent-emerald-glow);color:var(--accent-emerald);">&#8634;</div>
+      <div class="num">&#8634;</div>
       <h2>Ciclo de Vida da Story</h2>
     </div>
     <p class="section-subtitle">Toda story passa por esses 5 status, sempre nessa ordem.</p>
@@ -784,54 +813,54 @@
   <!-- AGENTES -->
   <section>
     <div class="section-title">
-      <div class="num" style="background:var(--accent-purple-glow);color:var(--accent-purple);">&#9823;</div>
+      <div class="num">&#9823;</div>
       <h2>Os Agentes</h2>
     </div>
     <p class="section-subtitle">Conheca cada membro do time e o que ele faz.</p>
 
     <div class="agents-grid">
-      <div class="agent-card" style="border-left:3px solid var(--accent-blue);">
-        <div class="agent-name" style="color:var(--accent-blue);">/AIOX:agents:analyst</div>
+      <div class="agent-card">
+        <div class="agent-name">/AIOX:agents:analyst</div>
         <div class="agent-role">Analista de Negocios. Pesquisa mercado, cria o brief do projeto.</div>
       </div>
-      <div class="agent-card" style="border-left:3px solid var(--accent-purple);">
-        <div class="agent-name" style="color:var(--accent-purple);">/AIOX:agents:pm</div>
+      <div class="agent-card">
+        <div class="agent-name">/AIOX:agents:pm</div>
         <div class="agent-role">Product Manager. Define requisitos do produto (PRD) e cria epics.</div>
       </div>
-      <div class="agent-card" style="border-left:3px solid var(--accent-cyan);">
-        <div class="agent-name" style="color:var(--accent-cyan);">/AIOX:agents:architect</div>
+      <div class="agent-card">
+        <div class="agent-name">/AIOX:agents:architect</div>
         <div class="agent-role">Arquiteto de Software. Projeta a estrutura tecnica do sistema.</div>
       </div>
-      <div class="agent-card" style="border-left:3px solid var(--accent-rose);">
-        <div class="agent-name" style="color:var(--accent-rose);">/AIOX:agents:ux-design-expert</div>
+      <div class="agent-card">
+        <div class="agent-name">/AIOX:agents:ux-design-expert</div>
         <div class="agent-role">UX/UI Designer. Wireframes, design system, experiencia do usuario.</div>
       </div>
-      <div class="agent-card" style="border-left:3px solid #818cf8;">
-        <div class="agent-name" style="color:#818cf8;">/AIOX:agents:po</div>
+      <div class="agent-card">
+        <div class="agent-name">/AIOX:agents:po</div>
         <div class="agent-role">Product Owner. Valida stories, prioriza backlog, da aceite final.</div>
       </div>
-      <div class="agent-card" style="border-left:3px solid var(--accent-emerald);">
-        <div class="agent-name" style="color:var(--accent-emerald);">/AIOX:agents:sm</div>
+      <div class="agent-card">
+        <div class="agent-name">/AIOX:agents:sm</div>
         <div class="agent-role">Scrum Master. Cria as user stories a partir do PRD.</div>
       </div>
-      <div class="agent-card" style="border-left:3px solid var(--accent-amber);">
-        <div class="agent-name" style="color:var(--accent-amber);">/AIOX:agents:dev</div>
+      <div class="agent-card">
+        <div class="agent-name">/AIOX:agents:dev</div>
         <div class="agent-role">Desenvolvedor Full-Stack. Implementa o codigo da story.</div>
       </div>
-      <div class="agent-card" style="border-left:3px solid #c084fc;">
-        <div class="agent-name" style="color:#c084fc;">/AIOX:agents:qa</div>
+      <div class="agent-card">
+        <div class="agent-name">/AIOX:agents:qa</div>
         <div class="agent-role">QA Engineer. Revisa qualidade, testes e seguranca do codigo.</div>
       </div>
-      <div class="agent-card" style="border-left:3px solid var(--accent-orange);">
-        <div class="agent-name" style="color:var(--accent-orange);">/AIOX:agents:devops</div>
+      <div class="agent-card">
+        <div class="agent-name">/AIOX:agents:devops</div>
         <div class="agent-role">DevOps. Push, PR, deploy, CI/CD. Unico que pode publicar codigo.</div>
       </div>
-      <div class="agent-card" style="border-left:3px solid #67e8f9;">
-        <div class="agent-name" style="color:#67e8f9;">/AIOX:agents:data-engineer</div>
+      <div class="agent-card">
+        <div class="agent-name">/AIOX:agents:data-engineer</div>
         <div class="agent-role">DBA. Banco de dados, schemas, migrations, RLS.</div>
       </div>
-      <div class="agent-card" style="border-left:3px solid #f9a8d4;">
-        <div class="agent-name" style="color:#f9a8d4;">/AIOX:agents:aiox-master</div>
+      <div class="agent-card">
+        <div class="agent-name">/AIOX:agents:aiox-master</div>
         <div class="agent-role">Orquestrador geral. Resolve conflitos, faz override de regras.</div>
       </div>
     </div>
@@ -840,7 +869,7 @@
   <!-- REFERENCIA RAPIDA -->
   <section>
     <div class="section-title">
-      <div class="num" style="background:var(--accent-amber-glow);color:var(--accent-amber);">&#9889;</div>
+      <div class="num">&#9889;</div>
       <h2>Referencia Rapida — Passo a Passo</h2>
     </div>
     <p class="section-subtitle">O fluxo completo, do zero ao deploy. Clique em cada fase para expandir.</p>
@@ -866,7 +895,7 @@
                 <div class="step-line"></div>
               </div>
               <div class="step-body">
-                <h4>Entender o projeto <span class="agent-tag" style="background:var(--accent-blue-glow);color:var(--accent-blue);">/AIOX:agents:analyst</span></h4>
+                <h4>Entender o projeto <span class="agent-tag">/AIOX:agents:analyst</span></h4>
                 <div class="step-desc">Pesquisa de mercado, analise de concorrentes, brief completo. E a fundacao — sem isso, voce constroi a coisa errada.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*create-project-brief</span>
@@ -883,7 +912,7 @@
                 <div class="step-line"></div>
               </div>
               <div class="step-body">
-                <h4>Definir requisitos <span class="agent-tag" style="background:var(--accent-purple-glow);color:var(--accent-purple);">/AIOX:agents:pm</span></h4>
+                <h4>Definir requisitos <span class="agent-tag">/AIOX:agents:pm</span></h4>
                 <div class="step-desc">Transforma o brief em um PRD — o documento que lista TUDO que o produto precisa ter. Requisitos funcionais, nao-funcionais, restricoes.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*create-prd</span>
@@ -900,8 +929,8 @@
               </div>
               <div class="step-body">
                 <h4>Projetar arquitetura + experiencia
-                  <span class="agent-tag" style="background:var(--accent-cyan-glow);color:var(--accent-cyan);">/AIOX:agents:architect</span>
-                  <span class="agent-tag" style="background:var(--accent-rose-glow);color:var(--accent-rose);">/AIOX:agents:ux-design-expert</span>
+                  <span class="agent-tag">/AIOX:agents:architect</span>
+                  <span class="agent-tag">/AIOX:agents:ux-design-expert</span>
                   <span class="parallel-badge">&#8644; paralelo</span>
                 </h4>
                 <div class="step-desc">
@@ -923,7 +952,7 @@
                 <div class="step-dot">4</div>
               </div>
               <div class="step-body">
-                <h4>Quebrar PRD em partes <span class="agent-tag" style="background:rgba(129,140,248,0.15);color:#818cf8;">/AIOX:agents:po</span></h4>
+                <h4>Quebrar PRD em partes <span class="agent-tag">/AIOX:agents:po</span></h4>
                 <div class="step-desc">Fatia o PRD grande em pedacos menores (epics e stories). Sem isso, o Scrum Master nao consegue criar stories — e como dar um livro inteiro pra alguem sem dividir em capitulos.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*shard-doc {doc} {destino}</span>
@@ -955,7 +984,7 @@
                 <div class="step-line"></div>
               </div>
               <div class="step-body">
-                <h4>Criar a story <span class="agent-tag" style="background:var(--accent-emerald-glow);color:var(--accent-emerald);">/AIOX:agents:sm</span> <span class="status-badge status-draft">Draft</span></h4>
+                <h4>Criar a story <span class="agent-tag">/AIOX:agents:sm</span> <span class="status-badge status-draft">Draft</span></h4>
                 <div class="step-desc">O Scrum Master cria a user story com criterios de aceitacao (o que define "pronto"), lista de tasks e notas tecnicas para o dev.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*draft</span>
@@ -970,7 +999,7 @@
                 <div class="step-line"></div>
               </div>
               <div class="step-body">
-                <h4>Validar a story <span class="agent-tag" style="background:rgba(129,140,248,0.15);color:#818cf8;">/AIOX:agents:po</span> <span class="status-badge status-ready">Ready</span></h4>
+                <h4>Validar a story <span class="agent-tag">/AIOX:agents:po</span> <span class="status-badge status-ready">Ready</span></h4>
                 <div class="step-desc">O Product Owner revisa a story com um checklist de 10 pontos. Se a nota for 7 ou mais, a story e aprovada e o dev pode comecar.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*validate-story-draft</span>
@@ -985,7 +1014,7 @@
                 <div class="step-line"></div>
               </div>
               <div class="step-body">
-                <h4>Implementar <span class="agent-tag" style="background:var(--accent-amber-glow);color:var(--accent-amber);">/AIOX:agents:dev</span> <span class="status-badge status-progress">InProgress</span></h4>
+                <h4>Implementar <span class="agent-tag">/AIOX:agents:dev</span> <span class="status-badge status-progress">InProgress</span></h4>
                 <div class="step-desc">O dev pega a story aprovada e implementa: escreve codigo, cria testes, roda lint e build. Voce escolhe o modo (veja abaixo).</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*develop</span>
@@ -1003,7 +1032,7 @@
                 <div class="step-line"></div>
               </div>
               <div class="step-body">
-                <h4>Revisar qualidade <span class="agent-tag" style="background:var(--accent-purple-glow);color:#c084fc;">/AIOX:agents:qa</span> <span class="status-badge status-review">InReview</span></h4>
+                <h4>Revisar qualidade <span class="agent-tag">/AIOX:agents:qa</span> <span class="status-badge status-review">InReview</span></h4>
                 <div class="step-desc">O QA revisa o codigo, verifica criterios de aceitacao, seguranca e qualidade. Resultado: PASS (ok) / CONCERNS (ok com notas) / FAIL (volta pro dev).</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*review {story}</span>
@@ -1019,7 +1048,7 @@
                 <div class="step-dot">9</div>
               </div>
               <div class="step-body">
-                <h4>Fechar a story <span class="agent-tag" style="background:rgba(129,140,248,0.15);color:#818cf8;">/AIOX:agents:po</span> <span class="status-badge status-done">Done</span></h4>
+                <h4>Fechar a story <span class="agent-tag">/AIOX:agents:po</span> <span class="status-badge status-done">Done</span></h4>
                 <div class="step-desc">O Product Owner faz o aceite formal e marca a story como concluida. Pronto, essa feature existe!</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*close-story</span>
@@ -1053,7 +1082,7 @@
                 <div class="step-line"></div>
               </div>
               <div class="step-body">
-                <h4>Verificar e enviar <span class="agent-tag" style="background:var(--accent-orange-glow);color:var(--accent-orange);">/AIOX:agents:devops</span></h4>
+                <h4>Verificar e enviar <span class="agent-tag">/AIOX:agents:devops</span></h4>
                 <div class="step-desc">Roda todos os quality checks e envia o codigo para o GitHub. Nenhum outro agente pode fazer push — so o /AIOX:agents:devops.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*pre-push</span>
@@ -1068,7 +1097,7 @@
                 <div class="step-line"></div>
               </div>
               <div class="step-body">
-                <h4>Criar Pull Request <span class="agent-tag" style="background:var(--accent-orange-glow);color:var(--accent-orange);">/AIOX:agents:devops</span></h4>
+                <h4>Criar Pull Request <span class="agent-tag">/AIOX:agents:devops</span></h4>
                 <div class="step-desc">Cria o PR no GitHub para revisao do codigo antes de ir para produção.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*create-pr</span>
@@ -1082,7 +1111,7 @@
                 <div class="step-dot">12</div>
               </div>
               <div class="step-body">
-                <h4>Release <span class="agent-tag" style="background:var(--accent-orange-glow);color:var(--accent-orange);">/AIOX:agents:devops</span> <span class="status-badge" style="background:rgba(107,114,128,0.12);color:#9ca3af;">OPCIONAL</span></h4>
+                <h4>Release <span class="agent-tag">/AIOX:agents:devops</span> <span class="status-badge">OPCIONAL</span></h4>
                 <div class="step-desc">Cria uma release versionada com changelog. Util quando o epic inteiro esta pronto e voce quer marcar uma versao.</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*release</span>
@@ -1102,7 +1131,7 @@
   <!-- MODOS -->
   <section>
     <div class="section-title">
-      <div class="num" style="background:var(--accent-cyan-glow);color:var(--accent-cyan);">&#9881;</div>
+      <div class="num">&#9881;</div>
       <h2>Modos de Execucao</h2>
     </div>
     <p class="section-subtitle">Escolha quanta autonomia voce quer dar ao agente.</p>
@@ -1150,7 +1179,7 @@
   <!-- DISCLAIMERS -->
   <section>
     <div class="section-title">
-      <div class="num" style="background:var(--accent-amber-glow);color:var(--accent-amber);">!</div>
+      <div class="num">!</div>
       <h2>Coisas Importantes</h2>
     </div>
     <p class="section-subtitle">Leia antes de usar. Serio.</p>
