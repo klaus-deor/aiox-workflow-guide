@@ -378,6 +378,37 @@
     background: var(--sand-glow-med);
     color: var(--sand-light);
   }
+  .cmd-tag.yolo {
+    border-color: rgba(218,204,180,0.25);
+    background: linear-gradient(135deg, rgba(218,204,180,0.15) 0%, rgba(181,171,155,0.08) 100%);
+    color: var(--sand);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cmd-tag.yolo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(218,204,180,0.12), transparent);
+    animation: yolo-shimmer 3s ease-in-out infinite;
+  }
+  @keyframes yolo-shimmer {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: 100%; }
+  }
+  .cmd-tag.yolo:hover {
+    background: linear-gradient(135deg, rgba(218,204,180,0.25) 0%, rgba(181,171,155,0.15) 100%);
+    border-color: var(--sand);
+    box-shadow: 0 0 16px rgba(218,204,180,0.1);
+  }
   .status-badge {
     display: inline-flex;
     align-items: center;
@@ -1022,6 +1053,7 @@
                   <span class="cmd-tag">*perform-market-research</span>
                   <span class="cmd-tag">*create-competitor-analysis</span>
                   <span class="cmd-tag">*brainstorm {topico}</span>
+                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
@@ -1038,6 +1070,7 @@
                   <span class="cmd-tag primary">*create-prd</span>
                   <span class="cmd-tag">*create-brownfield-prd</span>
                   <span class="cmd-tag">*create-epic</span>
+                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
@@ -1063,6 +1096,7 @@
                   <span class="cmd-tag primary">*create-front-end-spec</span>
                   <span class="cmd-tag">*wireframe {low|mid|high}</span>
                   <span class="cmd-tag">*create-backend-architecture</span>
+                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
@@ -1077,6 +1111,7 @@
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*shard-doc {doc} {destino}</span>
                   <span class="cmd-tag">*backlog-prioritize</span>
+                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
@@ -1109,6 +1144,7 @@
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*draft</span>
                   <span class="cmd-tag">*story-checklist</span>
+                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
@@ -1124,6 +1160,7 @@
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*validate-story-draft</span>
                   <span class="cmd-tag">*stories-index</span>
+                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
@@ -1142,6 +1179,7 @@
                   <span class="cmd-tag">*develop-preflight</span>
                   <span class="cmd-tag">*build</span>
                   <span class="cmd-tag">*run-tests</span>
+                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
@@ -1159,6 +1197,7 @@
                   <span class="cmd-tag primary">*gate {story}</span>
                   <span class="cmd-tag">*code-review {escopo}</span>
                   <span class="cmd-tag">*security-check {story}</span>
+                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
@@ -1172,6 +1211,7 @@
                 <div class="step-desc">O Product Owner faz o aceite formal e marca a story como concluida. Pronto, essa feature existe!</div>
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*close-story</span>
+                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
@@ -1207,6 +1247,7 @@
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*pre-push</span>
                   <span class="cmd-tag primary">*push</span>
+                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
@@ -1222,6 +1263,7 @@
                 <div class="cmd-box">
                   <span class="cmd-tag primary">*create-pr</span>
                   <span class="cmd-tag">*version-check</span>
+                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
@@ -1237,6 +1279,7 @@
                   <span class="cmd-tag primary">*release</span>
                   <span class="cmd-tag">*configure-ci</span>
                   <span class="cmd-tag">*setup-github</span>
+                  <span class="cmd-tag yolo">*yolo</span>
                 </div>
               </div>
             </div>
