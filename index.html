@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIOX Pro — Guia de Workflow</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --bg-card: #111118;
+    --bg-card-hover: #16161f;
+    --bg-elevated: #1a1a24;
+    --border: #1e1e2a;
+    --border-hover: #2a2a3a;
+    --text: #e4e4ed;
+    --text-muted: #8888a0;
+    --text-dim: #55556a;
+    --accent-blue: #6366f1;
+    --accent-blue-glow: rgba(99,102,241,0.15);
+    --accent-purple: #a855f7;
+    --accent-purple-glow: rgba(168,85,247,0.15);
+    --accent-emerald: #10b981;
+    --accent-emerald-glow: rgba(16,185,129,0.15);
+    --accent-amber: #f59e0b;
+    --accent-amber-glow: rgba(245,158,11,0.15);
+    --accent-rose: #f43f5e;
+    --accent-rose-glow: rgba(244,63,94,0.15);
+    --accent-cyan: #06b6d4;
+    --accent-cyan-glow: rgba(6,182,212,0.15);
+    --accent-orange: #f97316;
+    --accent-orange-glow: rgba(249,115,22,0.15);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --radius-xs: 6px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Ambient background glow */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -40%;
+    left: -20%;
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(ellipse, rgba(99,102,241,0.06) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -30%;
+    right: -20%;
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(ellipse, rgba(168,85,247,0.05) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 80px 0 60px;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: var(--accent-blue-glow);
+    border: 1px solid rgba(99,102,241,0.25);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent-blue);
+    letter-spacing: 0.5px;
+    margin-bottom: 28px;
+  }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-blue); animation: pulse-dot 2s infinite; }
+  @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .hero h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #fff 0%, #c4c4d4 50%, var(--accent-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero p {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 580px;
+    margin: 0 auto 40px;
+    font-weight: 300;
+  }
+
+  /* ── SECTION TITLES ── */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 72px 0 12px;
+  }
+  .section-title .num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-title h2 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+  .section-subtitle {
+    color: var(--text-muted);
+    font-size: 16px;
+    margin-bottom: 32px;
+    padding-left: 50px;
+    font-weight: 300;
+  }
+
+  /* ── INTRO BOXES ── */
+  .intro-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .intro-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    transition: all 0.3s ease;
+  }
+  .intro-card:hover { border-color: var(--border-hover); background: var(--bg-card-hover); }
+  .intro-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .intro-card h3 .icon { font-size: 20px; }
+  .intro-card p { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+  .intro-card code {
+    background: var(--bg-elevated);
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    color: var(--accent-purple);
+    border: 1px solid var(--border);
+  }
+
+  /* ── QUICK REF PIPELINE ── */
+  .pipeline {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin: 32px 0 48px;
+  }
+
+  .phase-block {
+    position: relative;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: var(--bg-card);
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 28px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+  .phase-header:hover { background: var(--bg-card-hover); }
+  .phase-header .phase-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .phase-header .phase-info { flex: 1; }
+  .phase-header .phase-info h3 { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; }
+  .phase-header .phase-info span { font-size: 13px; color: var(--text-muted); font-weight: 400; }
+  .phase-header .chevron {
+    width: 24px;
+    height: 24px;
+    color: var(--text-dim);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+  .phase-block.open .phase-header .chevron { transform: rotate(180deg); }
+
+  .phase-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .phase-block.open .phase-content { max-height: 2000px; }
+
+  .phase-steps {
+    padding: 0 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* ── STEP CARDS ── */
+  .step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    position: relative;
+  }
+  .step-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+  .step-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    border: 2px solid;
+  }
+  .step-line {
+    width: 2px;
+    flex: 1;
+    min-height: 16px;
+    background: var(--border);
+    margin-top: 4px;
+  }
+  .step:last-child .step-line { display: none; }
+  .step-body { flex: 1; padding-bottom: 4px; }
+  .step-body h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .step-body h4 .agent-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 5px;
+  }
+  .step-body .step-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+  .step-body .cmd-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .cmd-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-weight: 500;
+    cursor: default;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .cmd-tag:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-1px);
+  }
+  .cmd-tag.primary {
+    border-color: rgba(99,102,241,0.3);
+    background: var(--accent-blue-glow);
+    color: #a5b4fc;
+  }
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+
+  /* Color schemes per phase */
+  .phase-plan .phase-icon { background: var(--accent-blue-glow); color: var(--accent-blue); }
+  .phase-plan .step-dot { border-color: var(--accent-blue); color: var(--accent-blue); }
+  .phase-dev .phase-icon { background: var(--accent-emerald-glow); color: var(--accent-emerald); }
+  .phase-dev .step-dot { border-color: var(--accent-emerald); color: var(--accent-emerald); }
+  .phase-ship .phase-icon { background: var(--accent-orange-glow); color: var(--accent-orange); }
+  .phase-ship .step-dot { border-color: var(--accent-orange); color: var(--accent-orange); }
+
+  .status-draft { background: rgba(136,136,160,0.12); color: #9999b0; }
+  .status-ready { background: var(--accent-blue-glow); color: #818cf8; }
+  .status-progress { background: var(--accent-amber-glow); color: var(--accent-amber); }
+  .status-review { background: var(--accent-purple-glow); color: var(--accent-purple); }
+  .status-done { background: var(--accent-emerald-glow); color: var(--accent-emerald); }
+
+  /* ── AGENTS TABLE ── */
+  .agents-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+    margin: 24px 0 48px;
+  }
+  .agent-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 18px 20px;
+    transition: all 0.3s;
+  }
+  .agent-card:hover { border-color: var(--border-hover); background: var(--bg-card-hover); transform: translateY(-2px); }
+  .agent-card .agent-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .agent-card .agent-role {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ── MODES COMPARISON ── */
+  .modes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 24px 0 48px;
+  }
+  .mode-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .mode-card:hover { border-color: var(--border-hover); }
+  .mode-card .mode-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .mode-card h3 { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+  .mode-card .mode-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.7; }
+  .mode-card .mode-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .mode-card .mode-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+  }
+  .mode-card .mode-meta-row .label { color: var(--text-dim); }
+  .mode-card .mode-meta-row .value { font-weight: 600; }
+  .mode-card .mode-cmd {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .mode-card .mode-cmd code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    display: inline-block;
+  }
+
+  .mode-interactive .mode-label { color: var(--accent-blue); }
+  .mode-interactive .mode-cmd code { background: var(--accent-blue-glow); color: #a5b4fc; }
+  .mode-yolo .mode-label { color: var(--accent-amber); }
+  .mode-yolo .mode-cmd code { background: var(--accent-amber-glow); color: #fbbf24; }
+  .mode-preflight .mode-label { color: var(--accent-purple); }
+  .mode-preflight .mode-cmd code { background: var(--accent-purple-glow); color: #c084fc; }
+
+  .mode-default-tag {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--accent-blue-glow);
+    color: var(--accent-blue);
+    letter-spacing: 0.5px;
+  }
+
+  /* ── DISCLAIMER BANNER ── */
+  .disclaimer {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-amber);
+    border-radius: var(--radius-sm);
+    padding: 24px 28px;
+    margin: 24px 0;
+  }
+  .disclaimer h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent-amber);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .disclaimer p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+  .disclaimer code {
+    background: var(--bg-elevated);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent-purple);
+  }
+  .disclaimer ul {
+    list-style: none;
+    margin-top: 8px;
+  }
+  .disclaimer li {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 3px 0;
+    padding-left: 16px;
+    position: relative;
+  }
+  .disclaimer li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-amber);
+    opacity: 0.5;
+  }
+
+  /* ── LIFECYCLE VISUAL ── */
+  .lifecycle {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 24px 0 36px;
+    overflow-x: auto;
+    padding: 12px 0;
+  }
+  .lc-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 110px;
+    text-align: center;
+  }
+  .lc-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    border: 2px solid;
+    transition: transform 0.3s;
+  }
+  .lc-circle:hover { transform: scale(1.1); }
+  .lc-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+  }
+  .lc-agent {
+    font-size: 10px;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .lc-arrow {
+    font-size: 18px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+    margin: 0 4px;
+    margin-bottom: 26px;
+  }
+
+  .lc-draft .lc-circle { border-color: #6b7280; color: #6b7280; background: rgba(107,114,128,0.08); }
+  .lc-draft .lc-label { color: #9ca3af; }
+  .lc-ready .lc-circle { border-color: var(--accent-blue); color: var(--accent-blue); background: var(--accent-blue-glow); }
+  .lc-ready .lc-label { color: #818cf8; }
+  .lc-inprogress .lc-circle { border-color: var(--accent-amber); color: var(--accent-amber); background: var(--accent-amber-glow); }
+  .lc-inprogress .lc-label { color: var(--accent-amber); }
+  .lc-inreview .lc-circle { border-color: var(--accent-purple); color: var(--accent-purple); background: var(--accent-purple-glow); }
+  .lc-inreview .lc-label { color: var(--accent-purple); }
+  .lc-done .lc-circle { border-color: var(--accent-emerald); color: var(--accent-emerald); background: var(--accent-emerald-glow); }
+  .lc-done .lc-label { color: var(--accent-emerald); }
+
+  /* ── TOOLTIP ── */
+  .tip {
+    position: relative;
+    cursor: help;
+    border-bottom: 1px dashed var(--text-dim);
+  }
+  .tip::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-hover);
+    color: var(--text);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 10;
+    max-width: 280px;
+    white-space: normal;
+    line-height: 1.5;
+  }
+  .tip:hover::after { opacity: 1; }
+
+  /* ── PARALLEL BADGE ── */
+  .parallel-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: var(--accent-cyan-glow);
+    color: var(--accent-cyan);
+    border: 1px solid rgba(6,182,212,0.2);
+    margin-left: 8px;
+  }
+
+  /* ── REPEAT BANNER ── */
+  .repeat-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 20px;
+    background: var(--accent-emerald-glow);
+    border: 1px dashed rgba(16,185,129,0.3);
+    border-radius: var(--radius-sm);
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-emerald);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 60px 0 40px;
+    color: var(--text-dim);
+    font-size: 13px;
+  }
+  footer a { color: var(--accent-blue); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ── SCROLL ── */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .hero { padding: 48px 0 36px; }
+    .hero h1 { font-size: 32px; }
+    .section-subtitle { padding-left: 0; }
+    .agents-grid { grid-template-columns: 1fr 1fr; }
+    .modes-grid { grid-template-columns: 1fr; }
+    .lifecycle { gap: 0; }
+    .lc-node { min-width: 80px; }
+    .phase-steps { padding: 0 16px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">AIOX Pro v4.31</div>
+    <h1>Guia de Workflow</h1>
+    <p>Entenda como o AIOX funciona, passo a passo. Feito para quem esta comecando do zero.</p>
+  </section>
+
+  <!-- O QUE E -->
+  <section>
+    <div class="section-title">
+      <div class="num" style="background:var(--accent-blue-glow);color:var(--accent-blue);">?</div>
+      <h2>O que e o AIOX?</h2>
+    </div>
+    <p class="section-subtitle">Antes de qualquer coisa, entenda os conceitos basicos.</p>
+
+    <div class="intro-grid">
+      <div class="intro-card">
+        <h3><span class="icon">&#9881;</span> Agentes de IA</h3>
+        <p>O AIOX tem <strong>12 agentes especializados</strong>. Cada um faz uma coisa — como membros de um time real. Voce chama eles com <code>@nome</code> e pede tarefas com <code>*comando</code>.</p>
+      </div>
+      <div class="intro-card">
+        <h3><span class="icon">&#9733;</span> Comandos com *</h3>
+        <p>Os comandos com asterisco sao <strong>acoes que voce pede para o agente</strong>. Exemplo: voce ativa o <code>@dev</code> e digita <code>*develop</code> — ele implementa o codigo. Cada agente tem seus proprios comandos.</p>
+      </div>
+      <div class="intro-card">
+        <h3><span class="icon">&#128209;</span> Stories</h3>
+        <p>Uma <strong>story</strong> e a menor unidade de trabalho. Descreve uma funcionalidade do ponto de vista do usuario. Exemplo: "Como usuario, quero fazer login com Google."</p>
+      </div>
+      <div class="intro-card">
+        <h3><span class="icon">&#128230;</span> Epics</h3>
+        <p>Um <strong>epic</strong> e um objetivo grande demais para uma story so. Exemplo: "Sistema de Autenticacao" e um epic com varias stories (login, registro, reset de senha...).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIFECYCLE -->
+  <section>
+    <div class="section-title">
+      <div class="num" style="background:var(--accent-emerald-glow);color:var(--accent-emerald);">&#8634;</div>
+      <h2>Ciclo de Vida da Story</h2>
+    </div>
+    <p class="section-subtitle">Toda story passa por esses 5 status, sempre nessa ordem.</p>
+
+    <div class="lifecycle">
+      <div class="lc-node lc-draft">
+        <div class="lc-circle">&#9998;</div>
+        <div class="lc-label">Draft</div>
+        <div class="lc-agent">@sm</div>
+      </div>
+      <div class="lc-arrow">&#10140;</div>
+      <div class="lc-node lc-ready">
+        <div class="lc-circle">&#10003;</div>
+        <div class="lc-label">Ready</div>
+        <div class="lc-agent">@po</div>
+      </div>
+      <div class="lc-arrow">&#10140;</div>
+      <div class="lc-node lc-inprogress">
+        <div class="lc-circle">&#9881;</div>
+        <div class="lc-label">InProgress</div>
+        <div class="lc-agent">@dev</div>
+      </div>
+      <div class="lc-arrow">&#10140;</div>
+      <div class="lc-node lc-inreview">
+        <div class="lc-circle">&#128270;</div>
+        <div class="lc-label">InReview</div>
+        <div class="lc-agent">@qa</div>
+      </div>
+      <div class="lc-arrow">&#10140;</div>
+      <div class="lc-node lc-done">
+        <div class="lc-circle">&#9733;</div>
+        <div class="lc-label">Done</div>
+        <div class="lc-agent">@po</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENTES -->
+  <section>
+    <div class="section-title">
+      <div class="num" style="background:var(--accent-purple-glow);color:var(--accent-purple);">&#9823;</div>
+      <h2>Os Agentes</h2>
+    </div>
+    <p class="section-subtitle">Conheca cada membro do time e o que ele faz.</p>
+
+    <div class="agents-grid">
+      <div class="agent-card" style="border-left:3px solid var(--accent-blue);">
+        <div class="agent-name" style="color:var(--accent-blue);">@analyst</div>
+        <div class="agent-role">Analista de Negocios. Pesquisa mercado, cria o brief do projeto.</div>
+      </div>
+      <div class="agent-card" style="border-left:3px solid var(--accent-purple);">
+        <div class="agent-name" style="color:var(--accent-purple);">@pm</div>
+        <div class="agent-role">Product Manager. Define requisitos do produto (PRD) e cria epics.</div>
+      </div>
+      <div class="agent-card" style="border-left:3px solid var(--accent-cyan);">
+        <div class="agent-name" style="color:var(--accent-cyan);">@architect</div>
+        <div class="agent-role">Arquiteto de Software. Projeta a estrutura tecnica do sistema.</div>
+      </div>
+      <div class="agent-card" style="border-left:3px solid var(--accent-rose);">
+        <div class="agent-name" style="color:var(--accent-rose);">@ux-design-expert</div>
+        <div class="agent-role">UX/UI Designer. Wireframes, design system, experiencia do usuario.</div>
+      </div>
+      <div class="agent-card" style="border-left:3px solid #818cf8;">
+        <div class="agent-name" style="color:#818cf8;">@po</div>
+        <div class="agent-role">Product Owner. Valida stories, prioriza backlog, da aceite final.</div>
+      </div>
+      <div class="agent-card" style="border-left:3px solid var(--accent-emerald);">
+        <div class="agent-name" style="color:var(--accent-emerald);">@sm</div>
+        <div class="agent-role">Scrum Master. Cria as user stories a partir do PRD.</div>
+      </div>
+      <div class="agent-card" style="border-left:3px solid var(--accent-amber);">
+        <div class="agent-name" style="color:var(--accent-amber);">@dev</div>
+        <div class="agent-role">Desenvolvedor Full-Stack. Implementa o codigo da story.</div>
+      </div>
+      <div class="agent-card" style="border-left:3px solid #c084fc;">
+        <div class="agent-name" style="color:#c084fc;">@qa</div>
+        <div class="agent-role">QA Engineer. Revisa qualidade, testes e seguranca do codigo.</div>
+      </div>
+      <div class="agent-card" style="border-left:3px solid var(--accent-orange);">
+        <div class="agent-name" style="color:var(--accent-orange);">@devops</div>
+        <div class="agent-role">DevOps. Push, PR, deploy, CI/CD. Unico que pode publicar codigo.</div>
+      </div>
+      <div class="agent-card" style="border-left:3px solid #67e8f9;">
+        <div class="agent-name" style="color:#67e8f9;">@data-engineer</div>
+        <div class="agent-role">DBA. Banco de dados, schemas, migrations, RLS.</div>
+      </div>
+      <div class="agent-card" style="border-left:3px solid #f9a8d4;">
+        <div class="agent-name" style="color:#f9a8d4;">@aiox-master</div>
+        <div class="agent-role">Orquestrador geral. Resolve conflitos, faz override de regras.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFERENCIA RAPIDA -->
+  <section>
+    <div class="section-title">
+      <div class="num" style="background:var(--accent-amber-glow);color:var(--accent-amber);">&#9889;</div>
+      <h2>Referencia Rapida — Passo a Passo</h2>
+    </div>
+    <p class="section-subtitle">O fluxo completo, do zero ao deploy. Clique em cada fase para expandir.</p>
+
+    <div class="pipeline">
+
+      <!-- FASE 1 -->
+      <div class="phase-block phase-plan open" id="phase1">
+        <div class="phase-header" onclick="togglePhase('phase1')">
+          <div class="phase-icon">&#128736;</div>
+          <div class="phase-info">
+            <h3>Fase 1 — Planejamento</h3>
+            <span>Definir O QUE vai ser construido. 4 passos, 5 agentes.</span>
+          </div>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="phase-content">
+          <div class="phase-steps">
+
+            <div class="step">
+              <div class="step-marker">
+                <div class="step-dot">1</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body">
+                <h4>Entender o projeto <span class="agent-tag" style="background:var(--accent-blue-glow);color:var(--accent-blue);">@analyst</span></h4>
+                <div class="step-desc">Pesquisa de mercado, analise de concorrentes, brief completo. E a fundacao — sem isso, voce constroi a coisa errada.</div>
+                <div class="cmd-box">
+                  <span class="cmd-tag primary">*create-project-brief</span>
+                  <span class="cmd-tag">*perform-market-research</span>
+                  <span class="cmd-tag">*create-competitor-analysis</span>
+                  <span class="cmd-tag">*brainstorm {topico}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-marker">
+                <div class="step-dot">2</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body">
+                <h4>Definir requisitos <span class="agent-tag" style="background:var(--accent-purple-glow);color:var(--accent-purple);">@pm</span></h4>
+                <div class="step-desc">Transforma o brief em um PRD — o documento que lista TUDO que o produto precisa ter. Requisitos funcionais, nao-funcionais, restricoes.</div>
+                <div class="cmd-box">
+                  <span class="cmd-tag primary">*create-prd</span>
+                  <span class="cmd-tag">*create-brownfield-prd</span>
+                  <span class="cmd-tag">*create-epic</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-marker">
+                <div class="step-dot">3</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body">
+                <h4>Projetar arquitetura + experiencia
+                  <span class="agent-tag" style="background:var(--accent-cyan-glow);color:var(--accent-cyan);">@architect</span>
+                  <span class="agent-tag" style="background:var(--accent-rose-glow);color:var(--accent-rose);">@ux-design-expert</span>
+                  <span class="parallel-badge">&#8644; paralelo</span>
+                </h4>
+                <div class="step-desc">
+                  <strong>@architect</strong> decide COMO o sistema sera construido (tecnologias, APIs, banco).<br>
+                  <strong>@ux-design-expert</strong> define como o usuario vai INTERAGIR (fluxos, telas, design system).<br>
+                  Rodam ao mesmo tempo porque nao dependem um do outro.
+                </div>
+                <div class="cmd-box">
+                  <span class="cmd-tag primary">*create-full-stack-architecture</span>
+                  <span class="cmd-tag primary">*create-front-end-spec</span>
+                  <span class="cmd-tag">*wireframe {low|mid|high}</span>
+                  <span class="cmd-tag">*create-backend-architecture</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-marker">
+                <div class="step-dot">4</div>
+              </div>
+              <div class="step-body">
+                <h4>Quebrar PRD em partes <span class="agent-tag" style="background:rgba(129,140,248,0.15);color:#818cf8;">@po</span></h4>
+                <div class="step-desc">Fatia o PRD grande em pedacos menores (epics e stories). Sem isso, o Scrum Master nao consegue criar stories — e como dar um livro inteiro pra alguem sem dividir em capitulos.</div>
+                <div class="cmd-box">
+                  <span class="cmd-tag primary">*shard-doc {doc} {destino}</span>
+                  <span class="cmd-tag">*backlog-prioritize</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- FASE 2 -->
+      <div class="phase-block phase-dev" id="phase2">
+        <div class="phase-header" onclick="togglePhase('phase2')">
+          <div class="phase-icon">&#128187;</div>
+          <div class="phase-info">
+            <h3>Fase 2 — Desenvolvimento</h3>
+            <span>Implementar cada story. Repete para cada story do epic.</span>
+          </div>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="phase-content">
+          <div class="phase-steps">
+
+            <div class="step">
+              <div class="step-marker">
+                <div class="step-dot">5</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body">
+                <h4>Criar a story <span class="agent-tag" style="background:var(--accent-emerald-glow);color:var(--accent-emerald);">@sm</span> <span class="status-badge status-draft">Draft</span></h4>
+                <div class="step-desc">O Scrum Master cria a user story com criterios de aceitacao (o que define "pronto"), lista de tasks e notas tecnicas para o dev.</div>
+                <div class="cmd-box">
+                  <span class="cmd-tag primary">*draft</span>
+                  <span class="cmd-tag">*story-checklist</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-marker">
+                <div class="step-dot">6</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body">
+                <h4>Validar a story <span class="agent-tag" style="background:rgba(129,140,248,0.15);color:#818cf8;">@po</span> <span class="status-badge status-ready">Ready</span></h4>
+                <div class="step-desc">O Product Owner revisa a story com um checklist de 10 pontos. Se a nota for 7 ou mais, a story e aprovada e o dev pode comecar.</div>
+                <div class="cmd-box">
+                  <span class="cmd-tag primary">*validate-story-draft</span>
+                  <span class="cmd-tag">*stories-index</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-marker">
+                <div class="step-dot">7</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body">
+                <h4>Implementar <span class="agent-tag" style="background:var(--accent-amber-glow);color:var(--accent-amber);">@dev</span> <span class="status-badge status-progress">InProgress</span></h4>
+                <div class="step-desc">O dev pega a story aprovada e implementa: escreve codigo, cria testes, roda lint e build. Voce escolhe o modo (veja abaixo).</div>
+                <div class="cmd-box">
+                  <span class="cmd-tag primary">*develop</span>
+                  <span class="cmd-tag">*develop-yolo</span>
+                  <span class="cmd-tag">*develop-preflight</span>
+                  <span class="cmd-tag">*build</span>
+                  <span class="cmd-tag">*run-tests</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-marker">
+                <div class="step-dot">8</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body">
+                <h4>Revisar qualidade <span class="agent-tag" style="background:var(--accent-purple-glow);color:#c084fc;">@qa</span> <span class="status-badge status-review">InReview</span></h4>
+                <div class="step-desc">O QA revisa o codigo, verifica criterios de aceitacao, seguranca e qualidade. Resultado: PASS (ok) / CONCERNS (ok com notas) / FAIL (volta pro dev).</div>
+                <div class="cmd-box">
+                  <span class="cmd-tag primary">*review {story}</span>
+                  <span class="cmd-tag primary">*gate {story}</span>
+                  <span class="cmd-tag">*code-review {escopo}</span>
+                  <span class="cmd-tag">*security-check {story}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-marker">
+                <div class="step-dot">9</div>
+              </div>
+              <div class="step-body">
+                <h4>Fechar a story <span class="agent-tag" style="background:rgba(129,140,248,0.15);color:#818cf8;">@po</span> <span class="status-badge status-done">Done</span></h4>
+                <div class="step-desc">O Product Owner faz o aceite formal e marca a story como concluida. Pronto, essa feature existe!</div>
+                <div class="cmd-box">
+                  <span class="cmd-tag primary">*close-story</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="repeat-banner" style="margin:0 28px 24px;">
+            &#8634;&ensp;Repita os passos 5 a 9 para cada story ate fechar o Epic inteiro
+          </div>
+        </div>
+      </div>
+
+      <!-- FASE 3 -->
+      <div class="phase-block phase-ship" id="phase3">
+        <div class="phase-header" onclick="togglePhase('phase3')">
+          <div class="phase-icon">&#128640;</div>
+          <div class="phase-info">
+            <h3>Fase 3 — Entrega</h3>
+            <span>Publicar o codigo. Exclusivo do @devops.</span>
+          </div>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="phase-content">
+          <div class="phase-steps">
+
+            <div class="step">
+              <div class="step-marker">
+                <div class="step-dot">10</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body">
+                <h4>Verificar e enviar <span class="agent-tag" style="background:var(--accent-orange-glow);color:var(--accent-orange);">@devops</span></h4>
+                <div class="step-desc">Roda todos os quality checks e envia o codigo para o GitHub. Nenhum outro agente pode fazer push — so o @devops.</div>
+                <div class="cmd-box">
+                  <span class="cmd-tag primary">*pre-push</span>
+                  <span class="cmd-tag primary">*push</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-marker">
+                <div class="step-dot">11</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body">
+                <h4>Criar Pull Request <span class="agent-tag" style="background:var(--accent-orange-glow);color:var(--accent-orange);">@devops</span></h4>
+                <div class="step-desc">Cria o PR no GitHub para revisao do codigo antes de ir para produção.</div>
+                <div class="cmd-box">
+                  <span class="cmd-tag primary">*create-pr</span>
+                  <span class="cmd-tag">*version-check</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-marker">
+                <div class="step-dot">12</div>
+              </div>
+              <div class="step-body">
+                <h4>Release <span class="agent-tag" style="background:var(--accent-orange-glow);color:var(--accent-orange);">@devops</span> <span class="status-badge" style="background:rgba(107,114,128,0.12);color:#9ca3af;">OPCIONAL</span></h4>
+                <div class="step-desc">Cria uma release versionada com changelog. Util quando o epic inteiro esta pronto e voce quer marcar uma versao.</div>
+                <div class="cmd-box">
+                  <span class="cmd-tag primary">*release</span>
+                  <span class="cmd-tag">*configure-ci</span>
+                  <span class="cmd-tag">*setup-github</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MODOS -->
+  <section>
+    <div class="section-title">
+      <div class="num" style="background:var(--accent-cyan-glow);color:var(--accent-cyan);">&#9881;</div>
+      <h2>Modos de Execucao</h2>
+    </div>
+    <p class="section-subtitle">Escolha quanta autonomia voce quer dar ao agente.</p>
+
+    <div class="modes-grid">
+      <div class="mode-card mode-interactive">
+        <div class="mode-default-tag">PADRAO</div>
+        <div class="mode-label">Interativo</div>
+        <h3>Voce participa</h3>
+        <div class="mode-desc">O agente faz perguntas ao longo do caminho. Voce toma as decisoes importantes juntos.</div>
+        <div class="mode-meta">
+          <div class="mode-meta-row"><span class="label">Perguntas</span><span class="value">5 — 10</span></div>
+          <div class="mode-meta-row"><span class="label">Controle</span><span class="value">&#9608;&#9608;&#9608;&#9608;&#9601; Alto</span></div>
+          <div class="mode-meta-row"><span class="label">Melhor para</span><span class="value">Maioria dos casos</span></div>
+        </div>
+        <div class="mode-cmd"><code>*develop</code></div>
+      </div>
+
+      <div class="mode-card mode-yolo">
+        <div class="mode-label">YOLO</div>
+        <h3>Ele resolve</h3>
+        <div class="mode-desc">O agente toma TODAS as decisoes sozinho. Voce so ve o resultado final. Decisoes ficam logadas.</div>
+        <div class="mode-meta">
+          <div class="mode-meta-row"><span class="label">Perguntas</span><span class="value">0 — 1</span></div>
+          <div class="mode-meta-row"><span class="label">Controle</span><span class="value">&#9608;&#9601;&#9601;&#9601;&#9601; Minimo</span></div>
+          <div class="mode-meta-row"><span class="label">Melhor para</span><span class="value">Tasks simples, bugs obvios</span></div>
+        </div>
+        <div class="mode-cmd"><code>*develop-yolo</code></div>
+      </div>
+
+      <div class="mode-card mode-preflight">
+        <div class="mode-label">Pre-Flight</div>
+        <h3>Planeja primeiro</h3>
+        <div class="mode-desc">Cria um plano detalhado, revisa com voce, e SO DEPOIS executa. Maximo de seguranca.</div>
+        <div class="mode-meta">
+          <div class="mode-meta-row"><span class="label">Perguntas</span><span class="value">10 — 15</span></div>
+          <div class="mode-meta-row"><span class="label">Controle</span><span class="value">&#9608;&#9608;&#9608;&#9608;&#9608; Maximo</span></div>
+          <div class="mode-meta-row"><span class="label">Melhor para</span><span class="value">Features criticas</span></div>
+        </div>
+        <div class="mode-cmd"><code>*develop-preflight</code></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCLAIMERS -->
+  <section>
+    <div class="section-title">
+      <div class="num" style="background:var(--accent-amber-glow);color:var(--accent-amber);">!</div>
+      <h2>Coisas Importantes</h2>
+    </div>
+    <p class="section-subtitle">Leia antes de usar. Serio.</p>
+
+    <div class="disclaimer">
+      <h4>&#9888; *yolo (toggle) e diferente de *develop-yolo (modo)</h4>
+      <p>Esses dois parecem iguais mas fazem coisas DIFERENTES:</p>
+      <ul>
+        <li><code>*yolo</code> &mdash; Toggle de permissao. Disponivel em TODOS os agentes. Alterna entre: <strong>ask</strong> (pede confirmacao), <strong>auto</strong> (faz tudo sozinho) e <strong>explore</strong> (so le, nao muda nada). Fica salvo ate voce mudar de novo.</li>
+        <li><code>*develop-yolo</code> &mdash; Modo de execucao. So funciona no <code>@dev</code>. Faz o desenvolvimento inteiro de forma autonoma. So vale para aquela execucao, nao muda configuracao permanente.</li>
+      </ul>
+    </div>
+
+    <div class="disclaimer">
+      <h4>&#128274; So o @devops pode publicar codigo</h4>
+      <p>Nenhum outro agente pode fazer <code>git push</code>, criar Pull Request ou gerenciar releases. Se voce pedir para o <code>@dev</code> fazer push, ele vai recusar e pedir para voce chamar o <code>@devops</code>. Isso existe para evitar que codigo nao revisado va para producao.</p>
+    </div>
+
+    <div class="disclaimer">
+      <h4>&#128260; Se o QA reprovar, existe um loop automatico</h4>
+      <p>Quando o <code>@qa</code> retorna FAIL, o AIOX ativa um ciclo:</p>
+      <ul>
+        <li><code>@qa</code> gera lista de correcoes com <code>*create-fix-request</code></li>
+        <li><code>@dev</code> aplica as correcoes com <code>*apply-qa-fixes</code></li>
+        <li><code>@qa</code> revisa de novo &mdash; repete ate 5 vezes</li>
+        <li>Se nao resolver em 5 tentativas, escala para o <code>@aiox-master</code></li>
+      </ul>
+    </div>
+
+    <div class="disclaimer">
+      <h4>&#127793; Greenfield vs Brownfield</h4>
+      <p>Voce vai ver esses termos em varios comandos. A diferenca e simples:</p>
+      <ul>
+        <li><strong>Greenfield</strong> = projeto NOVO, do zero. Nao existe codigo ainda. Use <code>*create-prd</code>, <code>*create-full-stack-architecture</code>.</li>
+        <li><strong>Brownfield</strong> = projeto EXISTENTE. Ja tem codigo, banco, usuarios. Use <code>*create-brownfield-prd</code>, <code>*create-brownfield-architecture</code>.</li>
+      </ul>
+    </div>
+
+    <div class="disclaimer">
+      <h4>&#128161; Comandos universais</h4>
+      <p>Esses comandos funcionam em QUALQUER agente:</p>
+      <ul>
+        <li><code>*help</code> &mdash; Mostra todos os comandos disponiveis do agente ativo</li>
+        <li><code>*guide</code> &mdash; Mostra instrucoes detalhadas de uso</li>
+        <li><code>*yolo</code> &mdash; Alterna modo de permissao (ask / auto / explore)</li>
+        <li><code>*session-info</code> &mdash; Mostra info da sessao atual</li>
+        <li><code>*exit</code> &mdash; Sai do agente</li>
+      </ul>
+    </div>
+
+    <div class="disclaimer">
+      <h4>&#128176; Cada agente tem sua area — nao invada</h4>
+      <p>O AIOX foi projetado com separacao rigida de responsabilidades. Respeite as fronteiras:</p>
+      <ul>
+        <li>Criar story &rarr; so <code>@sm</code></li>
+        <li>Validar story &rarr; so <code>@po</code></li>
+        <li>Criar epic &rarr; so <code>@pm</code></li>
+        <li>Fazer push / PR &rarr; so <code>@devops</code></li>
+        <li>Schema de banco &rarr; so <code>@data-engineer</code></li>
+        <li>Resolver conflitos entre agentes &rarr; <code>@aiox-master</code></li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">
+    AIOX Pro v4.31 &mdash; Synkra AIOS Framework<br>
+    <span style="font-size:11px;margin-top:4px;display:block;">Guia gerado em 2026-03-31. Baseado na estrutura real do framework.</span>
+  </div>
+</footer>
+
+<script>
+  function togglePhase(id) {
+    document.getElementById(id).classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
